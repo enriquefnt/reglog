@@ -22,7 +22,7 @@
 				$data = $stmt->fetch(PDO::FETCH_ASSOC);
 
 				if($data == false){
-					$errMsg = "User $NomUsuario not found.";
+					$errMsg = "El usuario $NomUsuario no existe.";
 				}
 				else {
 					if($Contraseña == $data['Contraseña']) {
@@ -45,32 +45,36 @@
 ?>
 
 <html>
-<head><title>Login</title></head>
-	<style>
-	html, body {
-		margin: 1px;
-		border: 0;
-	}
-	</style>
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="estilo.css">
+</head>
+<header class="login-header">
+Ingreso a listados
+</header>
+
 <body>
-	<div align="center">
-		<div style=" border: solid 1px #006D9C; " align="left">
-			<?php
+		
+<div class="login">
+  <div class="login-triangle"></div>
+  
+  <h2 class="login-header">Ingresar Usuario y contraseña</h2>
+
+  <form class="login-container" action="" method="post">
+    <p><input type="text" name="NomUsuario" value="<?php if(isset($_POST['NomUsuario'])) echo $_POST['NomUsuario'] ?>"placeholder="Usuario" autocomplete="on"></p>
+    <p><input type="password" name="Contraseña" value="<?php if(isset($_POST['Contraseña'])) echo $_POST['Contraseña'] ?>" placeholder="Contraseña"></p>
+    <p><input type="submit" name='login' value="Login"></p>
+  </form>
+
+
+</div>
+<?php
 				if(isset($errMsg)){
 					echo '<div style="color:#FF0000;text-align:center;font-size:17px;">'.$errMsg.'</div>';
 				}
 			?>
-			<div style="background-color:#006D9C; color:#FFFFFF; padding:10px;"><b>Login</b></div>
-			<div style="margin: 15px">
-				<form action="" method="post">
-					<label>Usuario</label>
-					<input type="text" name="NomUsuario" value="<?php if(isset($_POST['NomUsuario'])) echo $_POST['NomUsuario'] ?>" autocomplete="off" class="box"/><br /><br />
-					<label>Contraseña</label>
-					<input type="password" name="Contraseña" value="<?php if(isset($_POST['Contraseña'])) echo $_POST['Contraseña'] ?>" autocomplete="off" class="box" /><br/><br />
-					<input type="submit" name='login' value="Login" class='submit'/><br />
-				</form>
-			</div>
-		</div>
-	</div>
+<button>
+
+	</button>
 </body>
 </html>
