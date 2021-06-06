@@ -48,6 +48,7 @@
 <head>
 	<title>Login</title>
 	<link rel="stylesheet" type="text/css" href="estilo.css">
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 </head>
 <header class="login-header">
 Ingreso a listados
@@ -70,11 +71,9 @@ Ingreso a listados
 </div>
 <?php
 				if(isset($errMsg)){
-					echo '<div style="color:#FF0000;text-align:center;font-size:17px;">'.$errMsg.'</div>';
+					echo '<div class="error-msg">'.$errMsg.'</div>';
 				}
 			?>
-<button>
 
-	</button>
 </body>
 </html>

@@ -7,6 +7,12 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+.error-msg {
+ color:#FF0000;
+  text-align:center;
+  font-size:25px;"
+}
+
 .login {
   width: 400px;
   margin: 16px auto;
@@ -26,11 +32,11 @@ body {
   margin-right: auto;
   margin-left: auto;
   border: 12px solid transparent;
-  border-bottom-color: #28d;
+  border-bottom-color: #3cbc8d;
 }
 
 .login-header {
-  background: #28d;
+  background: #3cbc8d;
   padding: 20px;
   font-size: 1.4em;
   font-weight: normal;
@@ -75,17 +81,30 @@ body {
 }
 
 .login input[type="submit"] {
-  background: #28d;
+  background: #3cbc8d;
   border-color: transparent;
   color: #fff;
   cursor: pointer;
 }
 
 .login input[type="submit"]:hover {
-  background: #17c;
+  background: #3cbc8d;
 }
 
 /* Buttons' focus effect */
 .login input[type="submit"]:focus {
-  border-color: #05a;
+  border-color: #3cbc8d;
+}
+
+.button {
+  border: 2px;
+  color: gray;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 24px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
 }

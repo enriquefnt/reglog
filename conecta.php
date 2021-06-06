@@ -7,7 +7,7 @@ $connect->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
 }
 catch(PDOException $e) {
-	echo $e->getMessage();
+	echo $e->getMessage(). 'Re intente en unos momentos';
 }
 
 ?>

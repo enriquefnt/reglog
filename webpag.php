@@ -11,9 +11,10 @@
 			
 			<b>Hola</b>
 			<div>
-				Bienvenido  <br>
+				<h2>Bienvenido  </h2><br>
+				<button class="button">
 				<a href="logout.php">Salir</a>
-
+			</button>
 			
 		</div>
 	</body>
