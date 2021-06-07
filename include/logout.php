@@ -2,5 +2,5 @@
 	require 'conecta.php';
 	session_destroy();
 
-	header('Location: login.php');
+	header('Location: /reglog/public/index.php');
 ?>

@@ -1,6 +1,5 @@
 <?php
-	require 'conecta.php';
-
+	include __DIR__ . '/../include/conecta.php';
 	if(isset($_POST['login'])) {
 		$errMsg = '';
 
@@ -30,7 +29,7 @@
 						$_SESSION['username'] = $data['NomUsuario'];
 						$_SESSION['password'] = $data['Contraseña'];
 						
-						header('Location: webpag.php');
+						header('Location: /reglog/include/webpag.php');
 						exit;
 					}
 					else
@@ -47,7 +46,7 @@
 <html>
 <head>
 	<title>Login</title>
-	<link rel="stylesheet" type="text/css" href="estilo.css">
+	<link rel="stylesheet" type="text/css" href="/reglog/include/estilo.css">
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 </head>
 <header class="login-header">
@@ -64,7 +63,7 @@ Ingreso a listados
   <form class="login-container" action="" method="post">
     <p><input type="text" name="NomUsuario" value="<?php if(isset($_POST['NomUsuario'])) echo $_POST['NomUsuario'] ?>"placeholder="Usuario" autocomplete="on"></p>
     <p><input type="password" name="Contraseña" value="<?php if(isset($_POST['Contraseña'])) echo $_POST['Contraseña'] ?>" placeholder="Contraseña"></p>
-    <p><input type="submit" name='login' value="Login"></p>
+    <p><input type="submit" name='login' value="Ingreso"></p>
   </form>
 
 
