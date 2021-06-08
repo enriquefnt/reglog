@@ -8,6 +8,7 @@ include __DIR__ . '/../include/funciones.php';
 	<title>Para MCDA</title>
 
 <link rel="stylesheet" type="text/css" href="estilo.css">
+<link rel="shortcut icon" type="image/x-icon" href="reglog/public/favicon.ico">
 
 </head>
 
