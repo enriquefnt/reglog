@@ -23,6 +23,11 @@
 				<a href="paraMCDA.php">Lista para MCDA</a>
 			</div>
 		</li>
+		<li>
+			<div>
+				<a href="nominal.php">Nominales</a>
+			</div>
+		</li>
 		</li>
 		<li>
 			<div>

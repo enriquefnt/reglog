@@ -12,7 +12,7 @@ include __DIR__ . '/../include/funciones.php';
 
 	<header>
 		<h2>Nominales</h2>
-		<p>Lista de casos activos nominalizados por área operativa 
+		<p>Lista de casos activos nominalizados por área operativa ordenados por fecha.
 		<a href="/reglog/include/webpag.php" class="button">Volver</a></p>
 		</header>
 	<body>	
@@ -32,9 +32,7 @@ include __DIR__ . '/../include/funciones.php';
 	?>
 	<form method="post">
        
-          <legend></legend>
           
-             <label></label>
           	<select name = "listaAOPS" id ="listaAOPS" > 
              <option value = 0 >SELECCIONE AOP</option>
 
@@ -49,20 +47,23 @@ include __DIR__ . '/../include/funciones.php';
               
     </form>
 	
-	
-		
-
+	Elegiste <?php echo "" . ' el AO  ' . $_POST['listaAOPS']?>
 	<?php
+
+
+
 
 			try {
 
 
 			
 			
-			$sql='
-			Select  DATE_FORMAT(NotFecha , "%d/%m/%Y") AS Fecha, ApeNom As Nombre,ROUND(DATEDIFF(NotFecha,FechaNto)/30.44) AS meses, Ao_Nom AS AOP, NotPeso AS Peso,  NotTalla AS Talla, ROUND(NotZpe,2) AS ZPesoEdad ,ROUND(NotZta,2)  AS ZTallaEdad ,
- 				ROUND(NotZimc,2) AS ZIMCEdad , MotNom, SevoNom, SclinNom,
- 				@tabla:="Notificación" AS Tipo, if(NotFin="SI","Alta","Activo") AS Estado, NotFecha AS Ordena, if(NotMatricula="SIN DATO","NO","SI") AS Medico, Aoresi,NotFin,
+			$sql='Select NotId AS IdNoti, DATE_FORMAT(NotFecha , "%d/%m/%Y") AS Fecha, ApeNom As Nombre,
+	ROUND(DATEDIFF(NotFecha,FechaNto)/30.44) AS meses, Ao_Nom AS AOP, ROUND(NotPeso,2) AS Peso, 
+    NotTalla AS Talla, ROUND(NotZpe,2) AS ZPesoEdad ,ROUND(NotZta,2)  AS ZTallaEdad ,
+ 	ROUND(NotZimc,2) AS ZIMCEdad , MotNom, SevoNom, SclinNom,@tabla:="Notificación" AS Tipo, 
+    if(NotFin="SI","Alta","Activo") AS Estado, NotFecha AS Ordena, 
+    if(NotMatricula="SIN DATO","NO","SI") AS Medico, Aoresi,NotFin,IdCtrol,NotFin, TIMESTAMPDIFF(DAY, NotFecha, now()) AS dias_transcurridos,
     CASE
     WHEN  
     (NotZpe > 7 OR NotZimc > 7 OR NotZta > 7 OR 
@@ -89,19 +90,32 @@ include __DIR__ . '/../include/funciones.php';
      
             
 END
- AS Clacificación
-
+ AS Clacificación,
+CASE
+	WHEN  TIMESTAMPDIFF(DAY, NotFecha, now()) < 30
+    THEN "1FFA04"
+	WHEN TIMESTAMPDIFF(DAY, NotFecha, now()) >= 30 AND TIMESTAMPDIFF(DAY, NotFecha, now()) <= 60
+    THEN "FFFA0A"
+	WHEN TIMESTAMPDIFF(DAY, NotFecha, now()) >60
+    THEN "FA1804"  
+END 
+AS color
 from NOTIFICACION 
-inner join NIÑOS on NotNiño=IdNiño
-inner join SEGUNEVOLUCION on NotEvo = SevoId
-inner join SEGUNCLINICA on NotClinica = SclinId
-inner join MOTIVOSNOTI on NotMotivo = MotId
-inner join AREAS on Aoresi=Ao_Id
-where Aoresi= '.$_POST['listaAOPS'].' AND NotFin="NO"
+left join NIÑOS on NotNiño=IdNiño
+left join SEGUNEVOLUCION on NotEvo = SevoId
+left join SEGUNCLINICA on NotClinica = SclinId
+left join MOTIVOSNOTI on NotMotivo = MotId
+left join AREAS on Aoresi=Ao_Id
+left join NOTICONTROL on NotId=IdNoti
+where Aoresi= '.$_POST['listaAOPS'].' AND NotFin="NO" AND IdCtrol IS null
+
 UNION
-select DATE_FORMAT(CtrolFecha , "%d/%m/%Y") AS Fecha, ApeNom As Nombre,ROUND(DATEDIFF(CtrolFecha,FechaNto)/30.44) AS meses, Ao_Nom AS AOP, CtrolPeso AS Peso,  CtrolTalla AS Talla, ROUND(CtrolZp,2) AS ZPesoEdad ,ROUND(CtrolZt,2)  AS ZTallaEdad , ROUND(CtrolZimc,2) AS ZIMCEdad , MotNom, SevoNom, SclinNom,
-	@tabla:="Control" AS Tipo,if(NotFin="SI","Alta","Activo") AS Estado, MAX(CtrolFecha) AS Ordena,
-	if(CtrolMatricula="SIN DATO","NO","SI") AS Medico,Aoresi,NotFin,
+select t.IdNoti, DATE_FORMAT(t.CtrolFecha , "%d/%m/%Y") AS Fecha, ApeNom As Nombre,
+	ROUND(DATEDIFF(t.CtrolFecha,FechaNto)/30.44) AS meses, Ao_Nom AS AOP, ROUND(t.CtrolPeso,2) AS Peso,
+	CtrolTalla AS Talla, ROUND(t.CtrolZp,2) AS ZPesoEdad ,ROUND(t.CtrolZt,2)  AS ZTallaEdad , 
+    ROUND(t.CtrolZimc,2) AS ZIMCEdad , MotNom, SevoNom, SclinNom,
+	@tabla:="Control" AS Tipo,if(NotFin="SI","Alta","Activo") AS Estado, @ordena:=CtrolFecha,
+	if(CtrolMatricula="SIN DATO","NO","SI") AS Medico,Aoresi,NotFin,IdCtrol,NotFin, TIMESTAMPDIFF(DAY, CtrolFecha, now()) AS dias_transcurridos,
 				 CASE
 				    WHEN  
     CtrolZp > 7 OR CtrolZimc > 7 OR CtrolZt > 7 OR
@@ -127,18 +141,31 @@ select DATE_FORMAT(CtrolFecha , "%d/%m/%Y") AS Fecha, ApeNom As Nombre,ROUND(DAT
      
         
 END 
-AS Clacificación
-				 from NOTICONTROL 
-				inner join NOTIFICACION on IdNoti=NotId
+AS Clacificación,
+CASE
+	WHEN  TIMESTAMPDIFF(DAY,CtrolFecha , now()) < 30
+    THEN "1FFA04"
+	WHEN TIMESTAMPDIFF(DAY, CtrolFecha, now()) >= 30 AND TIMESTAMPDIFF(DAY, CtrolFecha, now()) <= 60
+    THEN "FFFA0A"
+	WHEN TIMESTAMPDIFF(DAY, CtrolFecha, now()) >60
+    THEN "FA1804"
+    
+END 
+AS color
+				from NOTICONTROL t
+                inner join NOTIFICACION on IdNoti=NotId
 				inner join NIÑOS on NotNiño=IdNiño
+                  inner join (select IdNoti, max(CtrolFecha) as MaxdateCtrl
+				  from NOTICONTROL
+				  group by IdNoti)
+                  tm on t.IdNoti= tm.IdNoti and t.CtrolFecha = tm.MaxDateCtrl           
 				inner join SEGUNEVOLUCION on NotEvo = SevoId
 				inner join SEGUNCLINICA on NotClinica = SclinId
 				inner join MOTIVOSNOTI on NotMotivo = MotId
 				inner join AREAS on Aoresi=Ao_Id
-
-	
-				where `Aoresi`= '.$_POST['listaAOPS'].' AND NotFin="NO"
-            order by Nombre   ;';			
+								where Aoresi= '.$_POST['listaAOPS'].' AND NotFin="NO" 
+                                GROUP BY Nombre
+                                order by Ordena desc;';			
 
 				$casos = $connect->query($sql);
 			
@@ -152,15 +179,19 @@ AS Clacificación
 			$e->getFile() . ':' . $e->getLine();
 		}
 		?>
+	
 	<div>
+	
+		
+		
 			<table >
 				<tbody>
 	<thead>
   <tr>
-  	<th>Fecha</th>
+  	<th>Último control</th>
     <th>Nombre</th>
     <th>Edad (meses)</th>
-    <th>Area</th>
+   
     <th>Tipo</th>
     <th>Motivo de notificación</th>
     <th>Z Peso/edad</th>
@@ -168,7 +199,7 @@ AS Clacificación
     <th>Z IMC/edad</th>
     <th>Clasificacion</th>
     <th>Control Médico</th>
-    <th>Estado</th>
+    <th>Días sin registros</th>
   </tr>
   </thead>
   <tbody>
@@ -179,14 +210,14 @@ AS Clacificación
 			</p>
 
 		<?php else: ?>
-		
+		<?echo 'del área operativa de '. $caso['AOP']; ?>	
 			<ul>
 	<?php foreach ($casos as $caso): ?>
   <tr>
     <td><?= htmlspecialchars($caso['Fecha'], ENT_QUOTES, 'UTF-8'); ?></td>
     <td><?= htmlspecialchars($caso['Nombre'], ENT_QUOTES, 'UTF-8'); ?></td>
     <td><?= htmlspecialchars($caso['meses'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td><?= htmlspecialchars($caso['AOP'], ENT_QUOTES, 'UTF-8'); ?></td>
+    
     <td><?= htmlspecialchars($caso['Tipo'], ENT_QUOTES, 'UTF-8'); ?></td>
     <td><?= htmlspecialchars($caso['MotNom'], ENT_QUOTES, 'UTF-8'); ?></td>
     <td><?= htmlspecialchars($caso['ZPesoEdad'], ENT_QUOTES, 'UTF-8'); ?></td>
@@ -194,12 +225,14 @@ AS Clacificación
     <td><?= htmlspecialchars($caso['ZIMCEdad'], ENT_QUOTES, 'UTF-8'); ?></td>
     <td><?= htmlspecialchars($caso['Clacificación'], ENT_QUOTES, 'UTF-8'); ?></td>
     <td><?= htmlspecialchars($caso['Medico'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td><?= htmlspecialchars($caso['Estado'], ENT_QUOTES, 'UTF-8'); ?></td>
+  	 <td style= "background-color: #<?= htmlspecialchars($caso['color'], ENT_QUOTES, 'UTF-8'); ?>">
+  	 	
+    	 	<?= htmlspecialchars($caso['dias_transcurridos'], ENT_QUOTES, 'UTF-8'); ?></td>
   </tr>
   <?php endforeach; ?>
   </tbody>
 </table>
-			
+	<?='del área operativa de '. $caso['AOP']; ?>		
 	<?php endif; ?>
 </div>
 
