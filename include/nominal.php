@@ -1,6 +1,7 @@
 <?php  
 include __DIR__ . '/../include/conecta.php';
 include __DIR__ . '/../include/funciones.php';
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,8 +32,7 @@ include __DIR__ . '/../include/funciones.php';
 		
 	?>
 	<form method="post">
-       
-          
+                
           	<select name = "listaAOPS" id ="listaAOPS" > 
              <option value = 0 >SELECCIONE AOP</option>
 
@@ -44,10 +44,10 @@ include __DIR__ . '/../include/funciones.php';
              	
 				<input type="submit" value="Listar" >
              </select>
-              
+             
     </form>
 	
-	Elegiste <?php echo "" . ' el AO  ' . $_POST['listaAOPS']?>
+		Elegiste <?php echo "" . ' el AO  ' . $_POST['listaAOPS']?>
 	<?php
 
 
@@ -167,6 +167,7 @@ AS color
                                 GROUP BY Nombre
                                 order by Ordena desc;';			
 
+				
 				$casos = $connect->query($sql);
 			
 			
@@ -188,7 +189,7 @@ AS color
 				<tbody>
 	<thead>
   <tr>
-  	<th>Último control</th>
+  	<th>Último registro</th>
     <th>Nombre</th>
     <th>Edad (meses)</th>
    
@@ -215,7 +216,7 @@ AS color
 	<?php foreach ($casos as $caso): ?>
   <tr>
     <td><?= htmlspecialchars($caso['Fecha'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td><?= htmlspecialchars($caso['Nombre'], ENT_QUOTES, 'UTF-8'); ?></td>
+    <td><button class="button1" type="submit" formmethod="post" formaction="resu_caso.php"><?= htmlspecialchars($caso['Nombre'], ENT_QUOTES, 'UTF-8'); ?></button></td>
     <td><?= htmlspecialchars($caso['meses'], ENT_QUOTES, 'UTF-8'); ?></td>
     
     <td><?= htmlspecialchars($caso['Tipo'], ENT_QUOTES, 'UTF-8'); ?></td>
@@ -225,14 +226,15 @@ AS color
     <td><?= htmlspecialchars($caso['ZIMCEdad'], ENT_QUOTES, 'UTF-8'); ?></td>
     <td><?= htmlspecialchars($caso['Clacificación'], ENT_QUOTES, 'UTF-8'); ?></td>
     <td><?= htmlspecialchars($caso['Medico'], ENT_QUOTES, 'UTF-8'); ?></td>
-  	 <td style= "background-color: #<?= htmlspecialchars($caso['color'], ENT_QUOTES, 'UTF-8'); ?>">
-  	 	
-    	 	<?= htmlspecialchars($caso['dias_transcurridos'], ENT_QUOTES, 'UTF-8'); ?></td>
-  </tr>
+  	<td style= "background-color: #<?= htmlspecialchars($caso['color'], ENT_QUOTES, 'UTF-8'); ?>">
+  	 	    	 	<?= htmlspecialchars($caso['dias_transcurridos'], ENT_QUOTES, 'UTF-8'); ?></td>
+ 
+   
+    </tr>
   <?php endforeach; ?>
   </tbody>
 </table>
-	<?='del área operativa de '. $caso['AOP']; ?>		
+	<?='del área operativa de '. $caso['AOP'].  ' al día ' . date("d-m-Y "); ?>		
 	<?php endif; ?>
 </div>
 
