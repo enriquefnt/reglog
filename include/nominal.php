@@ -64,6 +64,7 @@ include __DIR__ . '/../include/funciones.php';
  	ROUND(NotZimc,2) AS ZIMCEdad , MotNom, SevoNom, SclinNom,@tabla:="Notificación" AS Tipo, 
     if(NotFin="SI","Alta","Activo") AS Estado, NotFecha AS Ordena, 
     if(NotMatricula="SIN DATO","NO","SI") AS Medico, Aoresi,NotFin,IdCtrol,NotFin, TIMESTAMPDIFF(DAY, NotFecha, now()) AS dias_transcurridos,
+    DATEDIFF( NotFechaSist, NotFecha) as retraso,
     CASE
     WHEN  
     (NotZpe > 7 OR NotZimc > 7 OR NotZta > 7 OR 
@@ -116,6 +117,7 @@ select t.IdNoti, DATE_FORMAT(t.CtrolFecha , "%d/%m/%Y") AS Fecha, ApeNom As Nomb
     ROUND(t.CtrolZimc,2) AS ZIMCEdad , MotNom, SevoNom, SclinNom,
 	@tabla:="Control" AS Tipo,if(NotFin="SI","Alta","Activo") AS Estado, @ordena:=CtrolFecha,
 	if(CtrolMatricula="SIN DATO","NO","SI") AS Medico,Aoresi,NotFin,IdCtrol,NotFin, TIMESTAMPDIFF(DAY, CtrolFecha, now()) AS dias_transcurridos,
+	DATEDIFF(CtrolFechapc,CtrolFecha) AS retraso ,
 				 CASE
 				    WHEN  
     CtrolZp > 7 OR CtrolZimc > 7 OR CtrolZt > 7 OR
@@ -201,6 +203,7 @@ AS color
     <th>Clasificacion</th>
     <th>Control Médico</th>
     <th>Días sin registros</th>
+    <th>Demora en notificar (Días)</th>
   </tr>
   </thead>
   <tbody>
@@ -216,7 +219,7 @@ AS color
 	<?php foreach ($casos as $caso): ?>
   <tr>
     <td><?= htmlspecialchars($caso['Fecha'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td><button class="button1" type="submit" formmethod="post" formaction="resu_caso.php"><?= htmlspecialchars($caso['Nombre'], ENT_QUOTES, 'UTF-8'); ?></button></td>
+    <td><?= htmlspecialchars($caso['Nombre'], ENT_QUOTES, 'UTF-8'); ?></td>
     <td><?= htmlspecialchars($caso['meses'], ENT_QUOTES, 'UTF-8'); ?></td>
     
     <td><?= htmlspecialchars($caso['Tipo'], ENT_QUOTES, 'UTF-8'); ?></td>
@@ -227,8 +230,8 @@ AS color
     <td><?= htmlspecialchars($caso['Clacificación'], ENT_QUOTES, 'UTF-8'); ?></td>
     <td><?= htmlspecialchars($caso['Medico'], ENT_QUOTES, 'UTF-8'); ?></td>
   	<td style= "background-color: #<?= htmlspecialchars($caso['color'], ENT_QUOTES, 'UTF-8'); ?>">
-  	 	    	 	<?= htmlspecialchars($caso['dias_transcurridos'], ENT_QUOTES, 'UTF-8'); ?></td>
- 
+  	  	 	<?= htmlspecialchars($caso['dias_transcurridos'], ENT_QUOTES, 'UTF-8'); ?></td>
+ 	<td><?= htmlspecialchars($caso['retraso'], ENT_QUOTES, 'UTF-8'); ?></td>
    
     </tr>
   <?php endforeach; ?>
@@ -240,5 +243,7 @@ AS color
 
 </body>
 </html>
+
+<a href=""></a>
 
 
