@@ -8,7 +8,7 @@ include __DIR__ . '/../include/funciones.php';
 <head>
 	<title>Listados Nominales</title>
 <link rel="stylesheet" type="text/css" href="estilo.css">
-<link rel="shortcut icon" type="image/x-icon" href="reglog/public/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="public/favicon.ico">
 </head>
 
 	<header>
@@ -228,7 +228,7 @@ AS color
     <td align="center" ><?= htmlspecialchars($caso['ZTallaEdad'], ENT_QUOTES, 'UTF-8'); ?></td>
     <td align="center"><?= htmlspecialchars($caso['ZIMCEdad'], ENT_QUOTES, 'UTF-8'); ?></td>
     <td><?= htmlspecialchars($caso['Clacificación'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td><?= htmlspecialchars($caso['Medico'], ENT_QUOTES, 'UTF-8'); ?></td>
+    <td align="center"><?= htmlspecialchars($caso['Medico'], ENT_QUOTES, 'UTF-8'); ?></td>
   	<td align="center" style= "background-color: #<?= htmlspecialchars($caso['color'], ENT_QUOTES, 'UTF-8'); ?>">
   	  	 	<?= htmlspecialchars($caso['dias_transcurridos'], ENT_QUOTES, 'UTF-8'); ?></td>
  	<td align="center"><?= htmlspecialchars($caso['retraso'], ENT_QUOTES, 'UTF-8'); ?></td>
