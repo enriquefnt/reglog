@@ -20,15 +20,16 @@
 		</li>
 		<li>
 			<div>
-				<a href="paraMCDA.php">Lista para MCDA</a>
+				<a href="nominal.php">Nominales</a>
 			</div>
 		</li>
 		<li>
 			<div>
-				<a href="nominal.php">Nominales</a>
+				<a href="paraMCDA.php">Lista para MCDA</a>
 			</div>
 		</li>
-		</li>
+		
+		
 		<li>
 			<div>
 				<a href="logout.php" >Salir</a>
