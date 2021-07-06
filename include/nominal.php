@@ -47,7 +47,7 @@ include __DIR__ . '/../include/funciones.php';
              
     </form>
 	
-		Elegiste <?php echo "" . ' el AO  ' . $_POST['listaAOPS']?>
+		
 	<?php
 
 
@@ -184,7 +184,7 @@ AS color
 		?>
 	
 	<div>
-	
+	Elegiste <?php echo "" . ' el AO  ' . $_POST['listaAOPS']?>
 		
 		
 			<table >
@@ -244,6 +244,6 @@ AS color
 </body>
 </html>
 
-<a href=""></a>
+
 
 
