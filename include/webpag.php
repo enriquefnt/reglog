@@ -7,33 +7,34 @@
 	<link rel="shortcut icon" type="image/x-icon" href="public/favicon.ico">
 </head>
 <body>
-	<header >
+	<header class="login-header">
 		<h2>
 			Listados SIVIN en tiempo real
 		</h2>
 	</header>
-	<ul>
+	<ul class="login-container">
 		<li>
-	<div>
-		<a href="ultimos.php">Lista últimos movimientos</a><br>
-	</div>
+	
+		<a href="ultimos.php"><button>Últimos movimientos</button></a><br>
+		
 		</li>
 		<li>
-			<div>
-				<a href="seleccionAOP.html">Nominales</a>
-			</div>
+			
+
+				<a href="seleccionAOP.html"><button>Nominales</button></a>
+			
 		</li>
 		<li>
-			<div>
-				<a href="paraMCDA.php">Lista para MCDA</a>
-			</div>
+			
+				<a href="paraMCDA.php"><button>Lista para MCDA</button></a>
+			
 		</li>
 		
 		
 		<li>
-			<div>
-				<a href="logout.php" >Salir</a>
-			</div>
+			
+				<a href="logout.php" ><button>Salir</button></a>
+			
 		</li>
 
 	</ul>

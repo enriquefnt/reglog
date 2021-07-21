@@ -11,7 +11,7 @@ include __DIR__ . '/../include/conecta.php';
 
 	<header>
 		<h2>Nominales</h2>
-		<p>Lista de casos activos nominalizados por área operativa ordenados por fecha.
+		<p>Lista de casos activos nominalizados por área operativa ordenados por fecha (click en el nombre para ver evolución del caso)
 		<a href="/reglog/include/webpag.php" class="button">Volver</a></p>
 		</header>
 	<body>	
@@ -58,9 +58,9 @@ include __DIR__ . '/../include/conecta.php';
     <td><?= htmlspecialchars($caso['Fecha'], ENT_QUOTES, 'UTF-8'); ?></td>
     <td>
     
-    	<form target="print_popup"   action="controles_caso.php" 
+    	<form target="_blank"  action="controles_caso.php" 
     	method="post"
-		onsubmit="window.open('about:blank','print_popup','width=auto,height=auto');">
+		>
 		<input type="hidden" name="IdNiño" value="<?= htmlspecialchars($caso['IdNiño'], 
 		  ENT_QUOTES, 'UTF-8'); ?>">
 		<input type="submit" value="<?= htmlspecialchars($caso['Nombre'], ENT_QUOTES, 'UTF-8'); ?>">

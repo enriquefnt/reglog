@@ -88,6 +88,18 @@ tr:nth-child(even) {
 }
 
 
+button {
+  background-color: #3cbc8d; /* Green */
+  border: 1em;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: bold;
+  display: inline-block;
+  font-size: 18px;
+  border-radius: 15px;
+}
+
 .error-msg {
  color:#FF0000;
   text-align:center;
@@ -118,12 +130,12 @@ tr:nth-child(even) {
 
 .login-header {
   background: #3cbc8d;
-  padding: 20px;
-  font-size: 1.4em;
+  padding: 15px;
+  font-size: 1.2em;
   font-weight: normal;
   text-align: center;
   text-transform: uppercase;
-  color: #fff;
+  color: #ddd;
 }
 
 .login-container {
