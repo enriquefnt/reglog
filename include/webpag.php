@@ -20,7 +20,7 @@
 		</li>
 		<li>
 			<div>
-				<a href="nominal.php">Nominales</a>
+				<a href="seleccionAOP.html">Nominales</a>
 			</div>
 		</li>
 		<li>

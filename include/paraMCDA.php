@@ -1,6 +1,5 @@
 <?php  
 include __DIR__ . '/../include/conecta.php';
-include __DIR__ . '/../include/funciones.php';
 ?>
 <!DOCTYPE html>
 <html>
