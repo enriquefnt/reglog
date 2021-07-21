@@ -17,6 +17,7 @@ include __DIR__ . '/../include/funciones.php';
 		<a href="/reglog/include/webpag.php" class="button">Volver</a></p>
 		</header>
 	<body>	
+		<?php  error_reporting(0);?> 
 	<?php  
 		$result = findAll($connect, 'AREAS');
 		
@@ -50,13 +51,8 @@ include __DIR__ . '/../include/funciones.php';
 		
 	<?php
 
-
-
-
 			try {
-
-
-			
+		
 			
 			$sql='Select NotId AS IdNoti, DATE_FORMAT(NotFecha , "%d/%m/%Y") AS Fecha, ApeNom As Nombre,
 	ROUND(DATEDIFF(NotFecha,FechaNto)/30.44) AS meses, Ao_Nom AS AOP, ROUND(NotPeso,2) AS Peso, 
