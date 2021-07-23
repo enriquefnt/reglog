@@ -41,6 +41,7 @@ include __DIR__ . '/../include/conecta.php';
     <th>Control Médico</th>
     <th>Días sin registros</th>
     <th>Demora en notificar (Días)</th>
+     <th>Vigilante</th>
   </tr>
   </thead>
   <tbody>
@@ -81,6 +82,7 @@ include __DIR__ . '/../include/conecta.php';
   	<td align="center" style= "background-color: #<?= htmlspecialchars($caso['color'], ENT_QUOTES, 'UTF-8'); ?>">
   	  	 	<?= htmlspecialchars($caso['dias_transcurridos'], ENT_QUOTES, 'UTF-8'); ?></td>
  	<td align="center"><?= htmlspecialchars($caso['retraso'], ENT_QUOTES, 'UTF-8'); ?></td>
+ 	<td align="center"><?= htmlspecialchars($caso['vigilante'], ENT_QUOTES, 'UTF-8'); ?></td>
    
     </tr>
   <?php endforeach; ?>
