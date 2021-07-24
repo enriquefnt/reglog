@@ -18,7 +18,7 @@ include __DIR__ . '/../include/conecta.php';
  	ROUND(NotZimc,2) AS ZIMCEdad , MotNom, SevoNom, SclinNom,@tabla:="Notificación" AS Tipo, 
     if(NotFin="SI","Alta","Activo") AS Estado, NotFecha AS Ordena, 
     if(NotMatricula="SIN DATO","NO","SI") AS Medico, Aoresi,NotFin,IdCtrol,NotFin, TIMESTAMPDIFF(DAY, NotFecha, now()) AS dias_transcurridos,
-    DATEDIFF( NotFechaSist, NotFecha) as retraso,
+    DATEDIFF( NotFechaSist, NotFecha) as retraso,  CONCAT(Ape,", ",Nom) AS vigilante,
     CASE
     WHEN  
     (NotZpe > 7 OR NotZimc > 7 OR NotZta > 7 OR 
@@ -62,6 +62,7 @@ left join SEGUNCLINICA on NotClinica = SclinId
 left join MOTIVOSNOTI on NotMotivo = MotId
 left join AREAS on Aoresi=Ao_Id
 left join NOTICONTROL on NotId=IdNoti
+inner join USUARIOS on NotUsuario = Idusuario
 where Aoresi= '.$_POST['listaAOPS'].' AND NotFin="NO" AND IdCtrol IS null
 
 UNION
@@ -71,7 +72,7 @@ select t.IdNoti, DATE_FORMAT(t.CtrolFecha , "%d/%m/%Y") AS Fecha, ApeNom As Nomb
     ROUND(t.CtrolZimc,2) AS ZIMCEdad , MotNom, SevoNom, SclinNom,
 	@tabla:="Control" AS Tipo,if(NotFin="SI","Alta","Activo") AS Estado, @ordena:=CtrolFecha,
 	if(CtrolMatricula="SIN DATO","NO","SI") AS Medico,Aoresi,NotFin,IdCtrol,NotFin, TIMESTAMPDIFF(DAY, CtrolFecha, now()) AS dias_transcurridos,
-	DATEDIFF(CtrolFechapc,CtrolFecha) AS retraso ,
+	DATEDIFF(CtrolFechapc,CtrolFecha) AS retraso ,  CONCAT(Ape,", ",Nom)  AS vigilante,
 				 CASE
 				    WHEN  
     CtrolZp > 7 OR CtrolZimc > 7 OR CtrolZt > 7 OR
@@ -119,6 +120,7 @@ AS color
 				inner join SEGUNCLINICA on NotClinica = SclinId
 				inner join MOTIVOSNOTI on NotMotivo = MotId
 				inner join AREAS on Aoresi=Ao_Id
+				inner join USUARIOS on CtrolUsuario = Idusuario
 								where Aoresi= '.$_POST['listaAOPS'].' AND NotFin="NO" 
                                 GROUP BY Nombre
                                 order by Ordena desc;';			

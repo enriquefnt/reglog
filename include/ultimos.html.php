@@ -39,6 +39,7 @@ include __DIR__ . '/../include/conecta.php';
     <th>Clasificacion</th>
     <th>Control Médico</th>
     <th>Estado</th>
+    <th>Vigilante</th>
     <th>Demora en notificar (Días)</th>
   </tr>
   </thead>
@@ -79,6 +80,7 @@ include __DIR__ . '/../include/conecta.php';
     <td><?= htmlspecialchars($caso['Clacificación'], ENT_QUOTES, 'UTF-8'); ?></td>
     <td align="center"><?= htmlspecialchars($caso['Medico'], ENT_QUOTES, 'UTF-8'); ?></td>
     <td><?= htmlspecialchars($caso['Estado'], ENT_QUOTES, 'UTF-8'); ?></td>
+    <td><?= htmlspecialchars($caso['vigilante'], ENT_QUOTES, 'UTF-8'); ?></td>
     <td align="center"><?= htmlspecialchars($caso['retraso'], ENT_QUOTES, 'UTF-8'); ?></td>
   </tr>
   <?php endforeach; ?>

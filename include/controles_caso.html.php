@@ -23,6 +23,7 @@
     <th>Z IMC/edad</th>
      <th>Clasificación</th>
     <th>Control Médico</th>
+    <th>Vigilante</th>
   </tr>
   </thead>
   <tbody>
@@ -47,7 +48,7 @@
     <td align="center"><?= htmlspecialchars($control['ZIMCEdad'], ENT_QUOTES, 'UTF-8'); ?></td>
      <td align="center"><?= htmlspecialchars($control['Clasificacion'], ENT_QUOTES, 'UTF-8'); ?></td>
      <td align="center"><?= htmlspecialchars($control['Médico'], ENT_QUOTES, 'UTF-8'); ?></td>
-  	
+  	<td align="center"><?= htmlspecialchars($control['vigilante'], ENT_QUOTES, 'UTF-8'); ?></td>
  
    
     </tr>

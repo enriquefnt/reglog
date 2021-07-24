@@ -11,7 +11,7 @@ include __DIR__ . '/../include/conecta.php';
 			Select  DATE_FORMAT(NotFecha , "%d/%m/%Y") AS Fecha, ApeNom As Nombre,ROUND(DATEDIFF(NotFecha,FechaNto)/30.44) AS meses, Ao_Nom AS AOP, NotPeso AS Peso,  NotTalla AS Talla, ROUND(NotZpe,2) AS ZPesoEdad ,ROUND(NotZta,2)  AS ZTallaEdad ,
  				ROUND(NotZimc,2) AS ZIMCEdad , MotNom, SevoNom, SclinNom,
  				@tabla:="Notificación" AS Tipo, if(NotFin="SI","Alta","Activo") AS Estado, NotFecha AS Ordena, if(NotMatricula="SIN DATO","NO","SI") AS Medico,
- 				DATEDIFF( NotFechaSist, NotFecha) as retraso, IdNiño,
+ 				DATEDIFF( NotFechaSist, NotFecha) as retraso, IdNiño,  CONCAT(Ape,", ",Nom)  AS vigilante,
     CASE
     WHEN  
     (NotZpe > 7 OR NotZimc > 7 OR NotZta > 7 OR 
@@ -46,13 +46,14 @@ inner join SEGUNEVOLUCION on NotEvo = SevoId
 inner join SEGUNCLINICA on NotClinica = SclinId
 inner join MOTIVOSNOTI on NotMotivo = MotId
 inner join AREAS on Aoresi=Ao_Id
+inner join USUARIOS on NotUsuario = Idusuario
 where NotFecha  > now() - INTERVAL 30 day
 
 UNION
 select DATE_FORMAT(CtrolFecha , "%d/%m/%Y") AS Fecha, ApeNom As Nombre,ROUND(DATEDIFF(CtrolFecha,FechaNto)/30.44) AS meses, Ao_Nom AS AOP, CtrolPeso AS Peso,  CtrolTalla AS Talla, ROUND(CtrolZp,2) AS ZPesoEdad ,ROUND(CtrolZt,2)  AS ZTallaEdad , ROUND(CtrolZimc,2) AS ZIMCEdad , MotNom, SevoNom, SclinNom,
 	@tabla:="Control" AS Tipo,if(NotFin="SI","Alta","Activo") AS Estado, CtrolFecha AS Ordena,
 	if(CtrolMatricula="SIN DATO","NO","SI") AS Medico,
-	DATEDIFF(CtrolFechapc,CtrolFecha) AS retraso , IdNiño,
+	DATEDIFF(CtrolFechapc,CtrolFecha) AS retraso , IdNiño, CONCAT(Ape,", ",Nom)  AS vigilante,
 				 CASE
 				    WHEN  
     CtrolZp > 7 OR CtrolZimc > 7 OR CtrolZt > 7 OR
@@ -86,6 +87,7 @@ AS Clacificación
 				inner join SEGUNCLINICA on NotClinica = SclinId
 				inner join MOTIVOSNOTI on NotMotivo = MotId
 				inner join AREAS on Aoresi=Ao_Id
+				inner join USUARIOS on CtrolUsuario = Idusuario
 				where CtrolFecha  > now() - INTERVAL 30 day 
 				order by Ordena desc limit 15
 				';

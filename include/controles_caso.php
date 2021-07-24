@@ -10,7 +10,7 @@ include __DIR__ . '/conecta.php';
 			
 			$sql='Select  DATE_FORMAT(NotFecha , "%d/%m/%Y") AS Fecha, ApeNom As Nombre,ROUND(DATEDIFF(NotFecha,FechaNto)/30.44) AS meses, FechaNto, SUBSTRING(Sexo,1,1) AS Sex, Ao_Nom AS AOP, NotPeso AS Peso,  NotTalla AS Talla, ROUND(NotZpe,2) AS ZPesoEdad ,ROUND(NotZta,2)  AS ZTallaEdad ,
  ROUND(NotZimc,2) AS ZIMCEdad , MotNom, SevoNom, SclinNom, @nombreTabla:="Noti" AS Tabla, if(NotFin="SI","Alta","Activo") AS Estado, 
- if(NotMatricula="SIN DATO","NO","SI") AS Médico, NotFecha AS Ordena,IdNiño,
+ if(NotMatricula="SIN DATO","NO","SI") AS Médico, NotFecha AS Ordena, IdNiño, CONCAT(Ape,", ",Nom)  AS vigilante,
     CASE
     WHEN  
     (NotZpe > 7 OR NotZimc > 7 OR NotZta > 7 OR 
@@ -46,12 +46,14 @@ inner join SEGUNEVOLUCION on NotEvo = SevoId
 inner join SEGUNCLINICA on NotClinica = SclinId
 inner join MOTIVOSNOTI on NotMotivo = MotId
 inner join AREAS on Aoresi=Ao_Id
+inner join USUARIOS on NotUsuario = Idusuario
+
 where  IdNiño='.$_POST['IdNiño'].'
 UNION
 
 SELECT  DATE_FORMAT(CtrolFecha , "%d/%m/%Y") AS Fecha, ApeNom AS Nombre ,ROUND(DATEDIFF(CtrolFecha,FechaNto)/30.44) AS meses,FechaNto, SUBSTRING(Sexo,1,1) AS Sex, Ao_Nom AS AOP, CtrolPeso AS Peso, CtrolTalla AS Talla, 
 ROUND(CtrolZp,2) AS ZPesoEdad, ROUND(CtrolZt,2) AS ZTallaEdad, ROUND(CtrolZimc,2) AS ZIMCEdad , MotNom, SevoNom, SclinNom, @nombreTabla:="control" AS Tabla, if(NotFin="SI","Alta","Activo") AS Estado,
-if(CtrolMatricula="SIN DATO","NO","SI") AS Médico, CtrolFecha AS Ordena,IdNiño,
+if(CtrolMatricula="SIN DATO","NO","SI") AS Médico, CtrolFecha AS Ordena,IdNiño,CONCAT(Ape,", ",Nom)  AS vigilante,
     CASE
     WHEN  
     CtrolZp > 7 OR CtrolZimc > 7 OR CtrolZt > 7 OR
@@ -86,6 +88,7 @@ inner join SEGUNEVOLUCION on CtrolEvo = SevoId
 inner join SEGUNCLINICA on CtrolClinica = SclinId
 inner join MOTIVOSNOTI on NotMotivo = MotId
 inner join AREAS on Aoresi=Ao_Id
+inner join USUARIOS on CtrolUsuario = Idusuario
 where IdNiño='.$_POST['IdNiño'].'
 ';			
 

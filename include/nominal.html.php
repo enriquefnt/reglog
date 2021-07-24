@@ -6,7 +6,7 @@ include __DIR__ . '/../include/conecta.php';
 <head>
 	<title>Listados Nominales</title>
 <link rel="stylesheet" type="text/css" href="estilo.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
 <link rel="shortcut icon" type="image/x-icon" href="public/favicon.ico">
 </head>
 
@@ -41,6 +41,7 @@ include __DIR__ . '/../include/conecta.php';
     <th>Clasificacion</th>
     <th>Control Médico</th>
     <th>Días sin registros</th>
+    <th>Vigilante</th>
     <th>Demora en notificar (Días)</th>
   </tr>
   </thead>
@@ -81,6 +82,7 @@ include __DIR__ . '/../include/conecta.php';
     <td align="center"><?= htmlspecialchars($caso['Medico'], ENT_QUOTES, 'UTF-8'); ?></td>
   	<td align="center" style= "background-color: #<?= htmlspecialchars($caso['color'], ENT_QUOTES, 'UTF-8'); ?>">
   	  	 	<?= htmlspecialchars($caso['dias_transcurridos'], ENT_QUOTES, 'UTF-8'); ?></td>
+            <td align="center"><?= htmlspecialchars($caso['vigilante'], ENT_QUOTES, 'UTF-8'); ?></td>
  	<td align="center"><?= htmlspecialchars($caso['retraso'], ENT_QUOTES, 'UTF-8'); ?></td>
    
     </tr>
@@ -90,10 +92,7 @@ include __DIR__ . '/../include/conecta.php';
 	<?='del área operativa de '. $caso['AOP'].  ' al día ' . date("d-m-Y "); ?>		
 	<?php endif; ?>
 </div>
-<button>
-   <span class="glyphicon glyphicon-download"></span>
-   Download list
-</button>
+
 </body>
 </html>
 

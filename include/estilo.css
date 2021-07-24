@@ -8,7 +8,18 @@ body {font-size: 0.9em;
   }
 
 
+ul {
+  list-style: none; /* Quitamos los marcadores */
+  padding: 3; /* Quitamos el padding por defecto de la lista */
+  margin-left: 5px; /* Separamos la lista de la izquierda */
+}
 
+li {
+  display: table-cell;
+  border: 2px;
+  text-align: center; 
+  padding: 5px;
+}
 
 header {
   display: block; 
@@ -44,7 +55,7 @@ width: 100%;
 }
 
 table, th, td {
-  border: 1px solid lightgrey;
+  border: 1px solid #ddd;
 }
 
 
@@ -52,7 +63,7 @@ th {
   background-color: #3cbc8d;
   color: white;
   height: 50px;
-  text-align: left
+  text-align: center;
 }
 
 
