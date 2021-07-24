@@ -1,14 +1,14 @@
 <?php
 
-function query($pdo, $sql, $parameters = []) {
-	$query = $pdo->prepare($sql);
+function query($connect, $sql, $parameters = []) {
+	$query = $connect->prepare($sql);
 	$query->execute($parameters);
 	return $query;
 }
 
 
-function total($pdo, $table) {
-	$query = query($pdo, 'SELECT COUNT(*) FROM `' . $table . '`');
+function total($connect, $table) {
+	$query = query($connect, 'SELECT COUNT(*) FROM `' . $table . '`');
 	$row = $query->fetch();
 	return $row[0];
 }
@@ -16,20 +16,20 @@ function total($pdo, $table) {
 
 
 
-function findById($pdo, $table, $primaryKey, $value) {
+function findById($connect, $table, $primaryKey, $value) {
 	$query = 'SELECT * FROM `' . $table . '` WHERE `' . $primaryKey . '` = :value';
 
 	$parameters = [
 		'value' => $value
 	];
 
-	$query = query($pdo, $query, $parameters);
+	$query = query($connect, $query, $parameters);
 
 	return $query->fetch();
 }
 
 
-function insert($pdo, $table, $fields) {
+function insert($connect, $table, $fields) {
 	$query = 'INSERT INTO `' . $table . '` (';
 
 	foreach ($fields as $key => $value) {
@@ -51,11 +51,11 @@ function insert($pdo, $table, $fields) {
 
 	$fields = processDates($fields);
 
-	query($pdo, $query, $fields);
+	query($connect, $query, $fields);
 }
 
 
-function update($pdo, $table, $primaryKey, $fields) {
+function update($connect, $table, $primaryKey, $fields) {
 
 	$query = ' UPDATE `' . $table .'` SET ';
 
@@ -73,20 +73,20 @@ function update($pdo, $table, $primaryKey, $fields) {
 
 	$fields = processDates($fields);
 
-	query($pdo, $query, $fields);
+	query($connect, $query, $fields);
 }
 
 
 
-function delete($pdo, $table, $primaryKey, $id ) {
+function delete($connect, $table, $primaryKey, $id ) {
 	$parameters = [':id' => $id];
 
-	query($pdo, 'DELETE FROM `' . $table . '` WHERE `' . $primaryKey . '` = :id', $parameters);
+	query($connect, 'DELETE FROM `' . $table . '` WHERE `' . $primaryKey . '` = :id', $parameters);
 }
 
 
-function findAll($pdo, $table) {
-	$result = query($pdo, 'SELECT * FROM `' . $table . '`');
+function findAll($connect, $table) {
+	$result = query($connect, 'SELECT * FROM `' . $table . '`');
 
 	return $result->fetchAll();
 }

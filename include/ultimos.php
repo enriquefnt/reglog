@@ -1,26 +1,8 @@
 <?php  
 
 include __DIR__ . '/../include/conecta.php';
-include __DIR__ . '/../include/funciones.php';
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Últimos Casos</title>
 
-<link rel="stylesheet" type="text/css" href="estilo.css">
-<link rel="shortcut icon" type="image/x-icon" href="reglog/public/favicon.ico">
-</head>
-
-	<header>
-		<h2>Últimos movimientos</h2>
-		<p>Lista de los últimos 15 movimientos en el sistema
-	<a href="/reglog/include/webpag.php" class="button">  Volver</a>
-	
-		</p>
-	</header>
-
-	<body>
 
 	<?php
 			try {
@@ -29,6 +11,7 @@ include __DIR__ . '/../include/funciones.php';
 			Select  DATE_FORMAT(NotFecha , "%d/%m/%Y") AS Fecha, ApeNom As Nombre,ROUND(DATEDIFF(NotFecha,FechaNto)/30.44) AS meses, Ao_Nom AS AOP, NotPeso AS Peso,  NotTalla AS Talla, ROUND(NotZpe,2) AS ZPesoEdad ,ROUND(NotZta,2)  AS ZTallaEdad ,
  				ROUND(NotZimc,2) AS ZIMCEdad , MotNom, SevoNom, SclinNom,
  				@tabla:="Notificación" AS Tipo, if(NotFin="SI","Alta","Activo") AS Estado, NotFecha AS Ordena, if(NotMatricula="SIN DATO","NO","SI") AS Medico,
+ 				DATEDIFF( NotFechaSist, NotFecha) as retraso, IdNiño,
     CASE
     WHEN  
     (NotZpe > 7 OR NotZimc > 7 OR NotZta > 7 OR 
@@ -69,6 +52,7 @@ UNION
 select DATE_FORMAT(CtrolFecha , "%d/%m/%Y") AS Fecha, ApeNom As Nombre,ROUND(DATEDIFF(CtrolFecha,FechaNto)/30.44) AS meses, Ao_Nom AS AOP, CtrolPeso AS Peso,  CtrolTalla AS Talla, ROUND(CtrolZp,2) AS ZPesoEdad ,ROUND(CtrolZt,2)  AS ZTallaEdad , ROUND(CtrolZimc,2) AS ZIMCEdad , MotNom, SevoNom, SclinNom,
 	@tabla:="Control" AS Tipo,if(NotFin="SI","Alta","Activo") AS Estado, CtrolFecha AS Ordena,
 	if(CtrolMatricula="SIN DATO","NO","SI") AS Medico,
+	DATEDIFF(CtrolFechapc,CtrolFecha) AS retraso , IdNiño,
 				 CASE
 				    WHEN  
     CtrolZp > 7 OR CtrolZimc > 7 OR CtrolZt > 7 OR
@@ -120,57 +104,9 @@ AS Clacificación
 			$e->getFile() . ':' . $e->getLine();
 		}
 		?>
+<?php  
 
+include __DIR__ . '/../include/ultimos.html.php';
+?>
 	
-	<div>
-			<table >
-				<tbody>
-	<thead>
-  <tr>
-  	<th>Fecha</th>
-    <th>Nombre</th>
-    <th>Edad (meses)</th>
-    <th>Area</th>
-    <th>Tipo</th>
-    <th>Motivo de notificación</th>
-    <th>Z Peso/edad</th>
-    <th>Z Talla/edad</th>
-    <th>Z IMC/edad</th>
-    <th>Clasificacion</th>
-    <th>Control Médico</th>
-    <th>Estado</th>
-  </tr>
-  </thead>
-  <tbody>
-  <?php if (isset($error)): ?>
-
-			<p>
-				<?php echo $error; ?>
-			</p>
-
-		<?php else: ?>
-		
-			<ul>
-	<?php foreach ($casos as $caso): ?>
-  <tr>
-    <td><?= htmlspecialchars($caso['Fecha'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td><?=  htmlspecialchars($caso['Nombre'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td><?=  htmlspecialchars($caso['meses'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td><?= htmlspecialchars($caso['AOP'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td><?= htmlspecialchars($caso['Tipo'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td><?= htmlspecialchars($caso['MotNom'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td><?= htmlspecialchars($caso['ZPesoEdad'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td><?= htmlspecialchars($caso['ZTallaEdad'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td><?= htmlspecialchars($caso['ZIMCEdad'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td><?= htmlspecialchars($caso['Clacificación'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td><?= htmlspecialchars($caso['Medico'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td><?= htmlspecialchars($caso['Estado'], ENT_QUOTES, 'UTF-8'); ?></td>
-  </tr>
-  <?php endforeach; ?>
-  </tbody>
-</table>
-			
-	<?php endif; ?>
-</div>
-</body>
-</html>
+	
