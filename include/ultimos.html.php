@@ -23,7 +23,7 @@ include __DIR__ . '/../include/conecta.php';
 
 	
 	<div>
-			<table >
+			<table id="managerTable">
 				<tbody>
 	<thead>
   <tr>

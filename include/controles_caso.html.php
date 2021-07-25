@@ -10,7 +10,7 @@
 
 		<div>
 
-			<table class="table">
+			<table id="managerTable">
 				<tbody>
 	<thead>
   <tr>
@@ -66,7 +66,7 @@
 <footer>
   
   <Input type = "button" class="button" value = "Volver al listado" onclick = "window.close ()">
-  
+
  </footer>
 </body>
 </html>

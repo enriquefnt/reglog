@@ -9,7 +9,7 @@ include __DIR__ . '/../include/conecta.php';
 <link rel="shortcut icon" type="image/x-icon" href="public/favicon.ico">
 </head>
 
-	<header>
+	<header >
 		<h2>Nominales</h2>
 		<p>Lista de casos activos nominalizados por área operativa ordenados por fecha (click en el nombre para ver evolución del caso)
 		<a href="/reglog/include/webpag.php" class="button">Volver</a></p>
@@ -18,7 +18,7 @@ include __DIR__ . '/../include/conecta.php';
 	<div>
 			
 				
-			<table class="table">
+			<table id="managerTable">
 				<tbody>
 	<thead>
   <tr>

@@ -85,7 +85,7 @@ order by  ordena desc ;';
 
 	
 	<div>
-			<table >
+			<table id="managerTable" >
 				<tbody>
 	<thead>
   <tr>
