@@ -8,9 +8,9 @@
 		$Contraseña = $_POST['Contraseña'];
 
 		if($NomUsuario == '')
-			$errMsg = 'Enter NomUsuario';
+			$errMsg = 'Ingrese nombre de usuario';
 		if($Contraseña == '')
-			$errMsg = 'Enter Contraseña';
+			$errMsg = 'Ingrese la Contraseña';
 
 		if($errMsg == '') {
 			try {

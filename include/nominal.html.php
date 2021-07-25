@@ -6,7 +6,6 @@ include __DIR__ . '/../include/conecta.php';
 <head>
 	<title>Listados Nominales</title>
 <link rel="stylesheet" type="text/css" href="estilo.css">
-
 <link rel="shortcut icon" type="image/x-icon" href="public/favicon.ico">
 </head>
 
@@ -16,16 +15,10 @@ include __DIR__ . '/../include/conecta.php';
 		<a href="/reglog/include/webpag.php" class="button">Volver</a></p>
 		</header>
 	<body>	
-	
-	
-		
-	
-	
 	<div>
-	Elegiste <?php echo "" . ' el AO  ' . $_POST['listaAOPS']?>
-		
-		
-			<table >
+			
+				
+			<table class="table">
 				<tbody>
 	<thead>
   <tr>
@@ -65,7 +58,7 @@ include __DIR__ . '/../include/conecta.php';
 		>
 		<input type="hidden" name="IdNiño" value="<?= htmlspecialchars($caso['IdNiño'], 
 		  ENT_QUOTES, 'UTF-8'); ?>">
-		<input type="submit" value="<?= htmlspecialchars($caso['Nombre'], ENT_QUOTES, 'UTF-8'); ?>">
+		<input type="submit" class="button" value="<?= htmlspecialchars($caso['Nombre'], ENT_QUOTES, 'UTF-8'); ?>">
 		</form>	
 
 
@@ -85,12 +78,15 @@ include __DIR__ . '/../include/conecta.php';
             <td align="center"><?= htmlspecialchars($caso['vigilante'], ENT_QUOTES, 'UTF-8'); ?></td>
  	<td align="center"><?= htmlspecialchars($caso['retraso'], ENT_QUOTES, 'UTF-8'); ?></td>
    
-    </tr>
+   </tr>
   <?php endforeach; ?>
+  <h2><?='Area Operativa: '. $caso['AOP'].  ' al día ' . date("d-m-Y "); ?></h2>
+  
+  <?php endif; ?>
   </tbody>
 </table>
-	<?='del área operativa de '. $caso['AOP'].  ' al día ' . date("d-m-Y "); ?>		
-	<?php endif; ?>
+			
+	
 </div>
 
 </body>

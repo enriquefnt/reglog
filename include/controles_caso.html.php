@@ -62,11 +62,11 @@
 	
 </div>
 		
-	</div
+	
 <footer>
-  <div>
-  <Input type = "button" value = "Volver al listado" onclick = "window.close ()">
-  </div>
+  
+  <Input type = "button" class="button" value = "Volver al listado" onclick = "window.close ()">
+  
  </footer>
 </body>
 </html>

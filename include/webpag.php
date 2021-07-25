@@ -12,30 +12,22 @@
 			Listados SIVIN en tiempo real
 		</h2>
 	</header>
-	<ul>
-		<li>
+	
 	<div>
-		<a href="ultimos.php">Lista últimos movimientos</a><br>
+		<a href="ultimos.php" class=button>Lista últimos movimientos</a><br>
 	</div>
-		</li>
-		<li>
-			<div>
-				<a href="seleccionAOP.html">Nominales</a>
-			</div>
-		</li>
-		<li>
-			<div>
-				<a href="paraMCDA.php">Lista para MCDA</a>
-			</div>
-		</li>
 		
-		
-		<li>
 			<div>
-				<a href="logout.php" >Salir</a>
+				<a href="seleccionAOP.html"class=button>Nominales</a>
 			</div>
-		</li>
-
-	</ul>
+		
+			<div>
+				<a href="paraMCDA.php"class=button>Lista para MCDA</a>
+			</div>
+		
+			<div>
+				<a href="logout.php" class=button>Salir</a>
+			</div>
+		
 </body>
 </html>

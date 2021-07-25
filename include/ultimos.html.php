@@ -61,7 +61,7 @@ include __DIR__ . '/../include/conecta.php';
 		<form target="_blank"  action="controles_caso.php" 	method="post">
 			<input type="hidden" name="IdNiño" value="<?= htmlspecialchars($caso['IdNiño'], 
 			  ENT_QUOTES, 'UTF-8'); ?>">
-			<input type="submit" value="<?= htmlspecialchars($caso['Nombre'], ENT_QUOTES, 'UTF-8'); ?>">
+			<input type="submit" class="button" value="<?= htmlspecialchars($caso['Nombre'], ENT_QUOTES, 'UTF-8'); ?>">
 		</form>	
 
 
