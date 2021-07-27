@@ -1,12 +1,12 @@
-<?php  
-include __DIR__ . '/../include/conecta.php';
-?>
+
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Listados Nominales</title>
 <link rel="stylesheet" type="text/css" href="estilo.css">
 <link rel="shortcut icon" type="image/x-icon" href="public/favicon.ico">
+<script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 
 	<header >
@@ -18,12 +18,13 @@ include __DIR__ . '/../include/conecta.php';
 	<div>
 			
 				
-			<table id="managerTable">
+			<table id="tbl_exporttable_to_xls">
 				<tbody>
 	<thead>
   <tr>
   	<th>Último registro</th>
     <th>Nombre</th>
+   
     <th>Edad (meses)</th>
    
     <th>Tipo</th>
@@ -51,18 +52,15 @@ include __DIR__ . '/../include/conecta.php';
 	<?php foreach ($casos as $caso): ?>
   <tr>
     <td><?= htmlspecialchars($caso['Fecha'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td>
-    
-    	<form target="_blank"  action="controles_caso.php" 
-    	method="post"
-		>
-		<input type="hidden" name="IdNiño" value="<?= htmlspecialchars($caso['IdNiño'], 
-		  ENT_QUOTES, 'UTF-8'); ?>">
-		<input type="submit" class="button" value="<?= htmlspecialchars($caso['Nombre'], ENT_QUOTES, 'UTF-8'); ?>">
-		</form>	
+    <td><?= htmlspecialchars($caso['Nombre'], ENT_QUOTES, 'UTF-8'); ?>
 
-
-
+        <form target="_blank"  action="controles_caso.php"   method="post">
+        <input type="hidden" name="IdNiño" value="<?= htmlspecialchars($caso['IdNiño'], 
+          ENT_QUOTES, 'UTF-8'); ?>">
+          
+        <input type="submit" class="button" value="...">
+        
+        </form> 
     </td>
     <td align="center"><?= htmlspecialchars($caso['meses'], ENT_QUOTES, 'UTF-8'); ?></td>
     
@@ -81,14 +79,17 @@ include __DIR__ . '/../include/conecta.php';
    </tr>
   <?php endforeach; ?>
   <h2><?='Area Operativa: '. $caso['AOP'].  ' al día ' . date("d-m-Y "); ?></h2>
-  
+  <button class="button" onclick="ExportToExcel('xlsx')">
+   <i class="fas fa-download"></i>
+   Descargar xlsx
+</button>
   <?php endif; ?>
   </tbody>
 </table>
 			
 	
 </div>
-
+<script type="text/javascript" src="descarga.js"></script> 
 </body>
 </html>
 

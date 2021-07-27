@@ -13,19 +13,19 @@
 		</h2>
 	</header>
 	
-	<div>
-		<a href="ultimos.php" class=button>Lista últimos movimientos</a><br>
-	</div>
+			<div class="button">
+				<a href="ultimos.php" class=button>Lista últimos movimientos</a><br>
+			</div>
 		
-			<div>
+			<div class="button">
 				<a href="seleccionAOP.html"class=button>Nominales</a>
 			</div>
 		
-			<div>
+			<div class="button">
 				<a href="paraMCDA.php"class=button>Lista para MCDA</a>
 			</div>
 		
-			<div>
+			<div class="button">
 				<a href="logout.php" class=button>Salir</a>
 			</div>
 		
