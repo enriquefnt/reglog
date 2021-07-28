@@ -19,7 +19,8 @@
 			
 				
 			<table id="tbl_exporttable_to_xls">
-				<tbody>
+				
+        <tbody>
 	<thead>
   <tr>
   	<th>Último registro</th>
@@ -48,7 +49,7 @@
 
 		<?php else: ?>
 		<?echo 'del área operativa de '. $caso['AOP']; ?>	
-			<ul>
+			
 	<?php foreach ($casos as $caso): ?>
   <tr>
     <td><?= htmlspecialchars($caso['Fecha'], ENT_QUOTES, 'UTF-8'); ?></td>
@@ -58,7 +59,7 @@
         <input type="hidden" name="IdNiño" value="<?= htmlspecialchars($caso['IdNiño'], 
           ENT_QUOTES, 'UTF-8'); ?>">
           
-        <input type="submit" class="button" value="...">
+        <input type="submit" class="button1" value="Ver">
         
         </form> 
     </td>
@@ -83,6 +84,7 @@
    <i class="fas fa-download"></i>
    Descargar xlsx
 </button>
+
   <?php endif; ?>
   </tbody>
 </table>
