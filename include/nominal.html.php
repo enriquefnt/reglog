@@ -59,7 +59,7 @@
         <input type="hidden" name="IdNiño" value="<?= htmlspecialchars($caso['IdNiño'], 
           ENT_QUOTES, 'UTF-8'); ?>">
           
-        <input type="submit" class="button1" value="Ver">
+        <input type="submit" class="button1" value="...">
         
         </form> 
     </td>
