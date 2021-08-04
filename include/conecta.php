@@ -1,8 +1,8 @@
 <?php
 
 try {
-$connect = new PDO('mysql:host=200.45.111.88;dbname=MSP_NUTRICION;
-charset=utf8', 'SiViNSalta', '@#sivin#@salta!%202020&&');
+$connect = new PDO('mysql:host=200.45.111.99;dbname=MSP_NUTRICION;
+charset=utf8', 'SiviNSalta', '@#sivin#@salta!%202020&&');
 $connect->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
 }
