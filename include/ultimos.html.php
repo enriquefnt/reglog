@@ -52,7 +52,7 @@ include __DIR__ . '/../include/conecta.php';
 
 		<?php else: ?>
 		
-			<ul>
+	
 	<?php foreach ($casos as $caso): ?>
   <tr>
     <td><?= htmlspecialchars($caso['Fecha'], ENT_QUOTES, 'UTF-8'); ?></td>
