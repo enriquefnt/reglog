@@ -13,10 +13,38 @@
 		<h2>Vigilantes</h2>
 		<p>Actividad de registro en el sistema de los Vigilantes por áreas operativas</p>
 		<a href="/reglog/include/webpag.php" class="button">Volver</a></p>
-		</header>
-	
+		<form action="" method="post">
+      <label for="AopZ">Zona:</label><br>
+      <select   name="Aopz" id="Aopz" >
+        <option value="">-- Seleccione Zona --</option>
+        <option value="1">Centro</option>
+        <option value="2">Norte</option>
+        <option value="3">Oeste</option>
+        <option value="4">Sur</option>
+      </select><br>
+     
+      <select name="Anio" id="Anio">
+   <option value="">-- Seleccione el año --</option>      
+  <label for="Anio">Año:</label><br>
+  <option value="2015">2015</option>
+  <option value="2016">2016</option>
+  <option value="2017">2017</option>
+  <option value="2018">2018</option>
+  <option value="2019">2019</option>
+  <option value="2020">2020</option>
+  <option value="2021">2021</option>
+  <option value="2022">2022</option>
+  </select><br>
+    <input type="submit"  class="button"  name="Listar">
+    </form>
+    </header>
+    <main>
+	<?php 
+  $Zona = $_POST['Aopz'];
+  $Año = $_POST['Anio'];
+  echo  $Zona . ' ' . $Año ; ?>
 	<div>
-			
+
 				
 			<table id="tbl_exporttable_to_xls">
 				
@@ -45,7 +73,7 @@
     
   
   <?php foreach ($casos as $caso): ?>
-   <?php if($caso['Anio']==2016){?>
+   <?php if($caso['Anio']==$Año AND  $caso['Ao_Zna']==$Zona){?>
   <tr>
     <td><?= htmlspecialchars($caso['Ao_Nom'], ENT_QUOTES, 'UTF-8'); ?></td>
     <td><?= htmlspecialchars($caso['Anio'], ENT_QUOTES, 'UTF-8'); ?></td>
@@ -59,18 +87,20 @@
    </tr>
    <?php } ?>
   <?php endforeach; ?>
-  <h2><?='Al día ' . date("d-m-Y "); ?></h2>
+  <h2><?='Del AÑo:'.$caso['Anio'].' De Zona:'.$caso['Ao_Zna'].' Al día ' . date("d-m-Y "); ?></h2>
   <button class="button" onclick="ExportToExcel('xlsx')">
    <i class="fas fa-download"></i>
    Descargar xlsx
 </button>
 
   <?php endif; ?>
+
   </tbody>
 </table>
 			
 	
 </div>
+  </main>
 <script type="text/javascript" src="descarga.js"></script> 
 </body>
 </html>
