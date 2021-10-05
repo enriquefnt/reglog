@@ -42,7 +42,34 @@
 	<?php 
   $Zona = $_POST['Aopz'];
   $Año = $_POST['Anio'];
-  echo  $Zona . ' ' . $Año ; ?>
+  $Zonas ;
+
+
+
+switch ($Zona) {
+  case "1":
+    $Zonas="Centro";
+    break;
+  case "2":
+    $Zonas="Norte";
+    break;
+  case "3":
+        $Zonas="Oeste";
+    break;
+    case "4":
+        $Zonas="Sur";
+    break;
+  default:
+    $Zonas="No seleccionada";
+}
+?>
+
+
+
+
+
+
+  ?>
 	<div>
 
 				
@@ -87,7 +114,7 @@
    </tr>
    <?php } ?>
   <?php endforeach; ?>
-  <h2><?='Del AÑo:'.$caso['Anio'].' De Zona:'.$caso['Ao_Zna'].' Al día ' . date("d-m-Y "); ?></h2>
+  <h2><?=' Del Año: '. $Año .' De Zona: '.$Zonas .' Al día: ' . date("d-m-Y "); ?></h2>
   <button class="button" onclick="ExportToExcel('xlsx')">
    <i class="fas fa-download"></i>
    Descargar xlsx
