@@ -88,6 +88,11 @@ th, td {
 }
 
 
+.tr {
+  background-color: gray;
+} 
+
+
 tr:nth-child(odd) {
   background-color: gray;
 }
@@ -96,6 +101,7 @@ tr:nth-child(odd) {
 tr:nth-child(even) {
   background-color: #ccc;
 }
+
 
 
 .error-msg {
@@ -216,10 +222,6 @@ tr:nth-child(even) {
   cursor: pointer;
   border-radius: 5px;
 }
-
-
-
-
 
 
 

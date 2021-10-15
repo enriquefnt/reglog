@@ -21,7 +21,7 @@
         <option value="2">Norte</option>
         <option value="3">Oeste</option>
         <option value="4">Sur</option>
-      </select><br>
+      </select><br><br>
      
       <select name="Anio" id="Anio">
    <option value="">-- Seleccione el año --</option>      
@@ -40,8 +40,14 @@
     </header>
     <main>
 	<?php 
+ 
+    
+  
   $Zona = $_POST['Aopz'];
   $Año = $_POST['Anio'];
+  
+
+
   $Zonas ;
 
 
@@ -77,11 +83,11 @@ switch ($Zona) {
 				
         <tbody>
 	<thead>
-  <tr>
+  <tr class="tr">
   	<th>Area Operativa</th>
-    <th>Año</th>
-    <th>Mes</th>
     <th>Nombre</th>
+    <th>Mes</th>
+    
     <th>Notificaciones</th>
     <th>Controles</th>
     <th>Egresos</th>
@@ -101,11 +107,11 @@ switch ($Zona) {
   
   <?php foreach ($casos as $caso): ?>
    <?php if($caso['Anio']==$Año AND  $caso['Ao_Zna']==$Zona){?>
-  <tr>
+  <tr class="tr">
     <td><?= htmlspecialchars($caso['Ao_Nom'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td><?= htmlspecialchars($caso['Anio'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td><?= htmlspecialchars($caso['mes'], ENT_QUOTES, 'UTF-8'); ?></td>
     <td><?= htmlspecialchars($caso['Nombre'], ENT_QUOTES, 'UTF-8'); ?>
+    <td><?= htmlspecialchars($caso['mes'], ENT_QUOTES, 'UTF-8'); ?></td>
+    
     <td align="center"><?= htmlspecialchars($caso['Notificaciones'], ENT_QUOTES, 'UTF-8'); ?></td>
         <td><?= htmlspecialchars($caso['Controles'], ENT_QUOTES, 'UTF-8'); ?></td>
     <td><?= htmlspecialchars($caso['Altas'], ENT_QUOTES, 'UTF-8'); ?></td>
@@ -129,9 +135,28 @@ switch ($Zona) {
 </div>
   </main>
 <script type="text/javascript" src="descarga.js"></script> 
+
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <script src="mergeTable.js"></script>
+    <script>
+        $('#tbl_exporttable_to_xls').margetable({
+            colindex:[{
+               index:0
+          },{
+             index:1,
+              dependent:[0]
+          },{
+              index:2,
+             dependent:[0,1]
+          }]
+       });
+        $('#textTable').margetable({
+            type: 2,
+            colindex: [0, 1, 3]
+        });
+    </script>
 </body>
+
 </html>
-
-
-
-

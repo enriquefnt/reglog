@@ -31,6 +31,10 @@
 			<div class="button">
 				<a href="paraMCDA.php"class=button>Lista para MCDA</a>
 			</div>
+
+			<div class="button">
+				<a href="vigilantes.php"class=button>Actividad Vigilantes</a>
+			</div>
 		
 			<div class="button">
 				<a href="logout.php" class=button>Salir</a>
