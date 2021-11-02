@@ -64,6 +64,7 @@ width: 100%;
 
 table, th, td {
   border: 1px solid #ddd;
+
 }
 
 
@@ -74,11 +75,13 @@ th {
   color: white;
   height: 50px;
   text-align: center;
+
 }
 
 
 td {
-  height: 15px;
+  height: 10px;
+
 }
 
 
@@ -89,7 +92,7 @@ th, td {
 
 
 .tr {
-  background-color: gray;
+  background-color: lightgray;
 } 
 
 
@@ -102,7 +105,9 @@ tr:nth-child(even) {
   background-color: #ccc;
 }
 
-
+.trclear {
+  background-color: lightgray;
+} 
 
 .error-msg {
  color:#FF0000;

@@ -50,8 +50,6 @@
 
   $Zonas ;
 
-
-
 switch ($Zona) {
   case "1":
     $Zonas="Centro";
@@ -69,13 +67,7 @@ switch ($Zona) {
     $Zonas="No seleccionada";
 }
 ?>
-
-
-
-
-
-
-  ?>
+ 
 	<div>
 
 				
@@ -83,7 +75,7 @@ switch ($Zona) {
 				
         <tbody>
 	<thead>
-  <tr class="tr">
+  <tr>
   	<th>Area Operativa</th>
     <th>Nombre</th>
     <th>Mes</th>
@@ -107,7 +99,7 @@ switch ($Zona) {
   
   <?php foreach ($casos as $caso): ?>
    <?php if($caso['Anio']==$Año AND  $caso['Ao_Zna']==$Zona){?>
-  <tr class="tr">
+  <tr class="trclear">
     <td><?= htmlspecialchars($caso['Ao_Nom'], ENT_QUOTES, 'UTF-8'); ?></td>
     <td><?= htmlspecialchars($caso['Nombre'], ENT_QUOTES, 'UTF-8'); ?>
     <td><?= htmlspecialchars($caso['mes'], ENT_QUOTES, 'UTF-8'); ?></td>
