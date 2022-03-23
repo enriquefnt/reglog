@@ -1,22 +1,13 @@
 ; (function ($, window, document, undefined) {
-    'use strict';//严格javascript模式
+    'use strict';
     var margetable = function ($eles, opt) {
-        this.opt = opt;//用户的配置
+        this.opt = opt;
         this.defaults = {
-            //合并类型
-            //1：表示指定要合并的列索引，并给出合并列时依赖的列索引（要有先后顺序）
-            //   例如：
-            //   colindex:[{
-            //      index: 2,//要合并的列索引
-            //      dependent: [0,1]//合并列依赖的列索引
-            //   }]
-            //2：同时指定要合并的列索引，后面的列合并时依赖前面的列索引
-            //   例如：
-            //   colindex:[0,1,2]//合并的列，后面的列索引依赖前面的列索引
+            
             type: 1,
             colindex: [{
-                index: 0,//要合并的列索引
-                dependent: [0]//合并列依赖的列索引，如果index为0，则此值不用赋值
+                index: 0,
+                dependent: [0]
             }]
         };
 
@@ -27,7 +18,7 @@
             var $this = $(this);
             var colIndexs = me.options.colindex;
             if (me.options.type == "1") {
-                //循环要合并的配置，并进行合并操作
+               
                 for (var i = 0; i < colIndexs.length; i++) {
                     margetColumn($this, colIndexs[i]);
                 }
@@ -38,9 +29,7 @@
         });
     };
 
-    // 合并列
-    // $ele 要合并的表格
-    // option 用户设置的选项
+    
     var margetColumn = function ($ele, option) {
         var me = this;
         var $trs = $ele.find('tbody tr');
@@ -127,10 +116,7 @@
         }
     };
 
-    // 记录最近一次的不同值
-    // index 当前的索引
-    // $tr 当前的行
-    // option 用户设置的选项
+    
     var setPreRecord = function ($tr, option) {
         var textinfo = new Object();
         textinfo['col' + option.index] = $tr.find('td').eq(option.index).text();

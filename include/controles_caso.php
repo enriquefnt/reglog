@@ -8,9 +8,14 @@ include __DIR__ . '/conecta.php';
 			try {
 		
 			
-			$sql='Select  DATE_FORMAT(NotFecha , "%d/%m/%Y") AS Fecha, ApeNom As Nombre,ROUND(DATEDIFF(NotFecha,FechaNto)/30.44) AS meses, FechaNto, SUBSTRING(Sexo,1,1) AS Sex, Ao_Nom AS AOP, NotPeso AS Peso,  NotTalla AS Talla, ROUND(NotZpe,2) AS ZPesoEdad ,ROUND(NotZta,2)  AS ZTallaEdad ,
+			$sql='Select  DATE_FORMAT(NotFecha , "%d/%m/%Y") AS Fecha, ApeNom As Nombre, FechaNto, SUBSTRING(Sexo,1,1) AS Sex, Ao_Nom AS AOP, NotPeso AS Peso,  NotTalla AS Talla, ROUND(NotZpe,2) AS ZPesoEdad ,ROUND(NotZta,2)  AS ZTallaEdad ,
  ROUND(NotZimc,2) AS ZIMCEdad , MotNom, SevoNom, SclinNom, @nombreTabla:="Noti" AS Tabla, if(NotFin="SI","Alta","Activo") AS Estado, 
  if(NotMatricula="SIN DATO","NO","SI") AS Médico, NotFecha AS Ordena, IdNiño, CONCAT(Ape,", ",Nom)  AS vigilante,
+
+IF (NotFecha <> "31/12/25",floor(DATEDIFF(NotFecha, FechaNto)/365.25),floor(DATEDIFF(CURDATE(), FechaNto)/365.25))  AS años,
+IF (NotFecha <> "31/12/25",floor((DATEDIFF(NotFecha, FechaNto)%365.25)/30.4375),floor((DATEDIFF(CURDATE(), FechaNto)%365.25)/30.4375))  AS meses,
+IF (NotFecha <> "31/12/25",floor(datediff(NotFecha, FechaNto) % 30.4375),floor(datediff(CURDATE(),FechaNto) % 30.4375))  AS dias,
+
     CASE
     WHEN  
     (NotZpe > 7 OR NotZimc > 7 OR NotZta > 7 OR 
@@ -54,9 +59,15 @@ inner join USUARIOS on NotUsuario = Idusuario
 where  IdNiño='.$_POST['IdNiño'].'
 UNION
 
-SELECT  DATE_FORMAT(CtrolFecha , "%d/%m/%Y") AS Fecha, ApeNom AS Nombre ,ROUND(DATEDIFF(CtrolFecha,FechaNto)/30.44) AS meses,FechaNto, SUBSTRING(Sexo,1,1) AS Sex, Ao_Nom AS AOP, CtrolPeso AS Peso, CtrolTalla AS Talla, 
+SELECT  DATE_FORMAT(CtrolFecha , "%d/%m/%Y") AS Fecha, ApeNom AS Nombre ,FechaNto, SUBSTRING(Sexo,1,1) AS Sex, Ao_Nom AS AOP, CtrolPeso AS Peso, CtrolTalla AS Talla, 
 ROUND(CtrolZp,2) AS ZPesoEdad, ROUND(CtrolZt,2) AS ZTallaEdad, ROUND(CtrolZimc,2) AS ZIMCEdad , MotNom, SevoNom, SclinNom, @nombreTabla:="control" AS Tabla, if(NotFin="SI","Alta","Activo") AS Estado,
-if(CtrolMatricula="SIN DATO","NO","SI") AS Médico, CtrolFecha AS Ordena,IdNiño,CONCAT(Ape,", ",Nom)  AS vigilante,
+if(CtrolMatricula="SIN DATO","NO","SI") AS Médico, CtrolFecha AS Ordena,IdNiño,CONCAT(Ape,", ",Nom)  AS vigilante, 
+
+
+IF (CtrolFecha <> "31/12/25",floor(DATEDIFF(CtrolFecha, FechaNto)/365.25),floor(DATEDIFF(CURDATE(), FechaNto)/365.25))  AS años,
+IF (CtrolFecha <> "31/12/25",floor((DATEDIFF(CtrolFecha, FechaNto)%365.25)/30.4375),floor((DATEDIFF(CURDATE(), FechaNto)%365.25)/30.4375))  AS meses,
+IF (CtrolFecha <> "31/12/25",floor(datediff(CtrolFecha, FechaNto) % 30.4375),floor(datediff(CURDATE(),FechaNto) % 30.4375))  AS dias,
+
     CASE
     WHEN  
     CtrolZp > 7 OR CtrolZimc > 7 OR CtrolZt > 7 OR
