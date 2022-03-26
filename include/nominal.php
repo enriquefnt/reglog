@@ -30,11 +30,14 @@ include __DIR__ . '/../include/conecta.php';
 	WHEN (NotZimc >-3 AND NotZimc <=-2)   AND NotZta <= -2 AND (NotClinica <> 2  OR MotId <> 3)
         THEN "Crónico Agudizado Moderado"  		
     WHEN 
-    NotZimc <=-3 OR NotClinica= 2  OR MotId = 3 
+    	NotZimc <=-3 OR NotClinica= 2  OR MotId = 3 
         THEN "Agudo Severo"
     WHEN 
-    (NotZimc >-3 AND NotZimc <=-2)   OR (NotZpe < -2 AND NotZta > -2) 
+    	(NotZimc >-3 AND NotZimc <=-2)   
         THEN "Agudo Moderado"
+    WHEN 
+		NotZpe < -2 AND NotZimc > -2 AND NotZta > -2 
+        THEN "Ver curva"
       
     WHEN (NotZimc >-2  OR NotEvo = 2 )  AND NotZta <= -2 
         THEN "Crónico"
@@ -87,8 +90,11 @@ select t.IdNoti, DATE_FORMAT(t.CtrolFecha , "%d/%m/%Y") AS Fecha, ApeNom As Nomb
     CtrolZimc <-3 OR  CtrolClinica = 2
         THEN "Agudo Severo"
     WHEN 
-    (CtrolZimc >-3 AND CtrolZimc <=-2)  OR (CtrolZp < -2 AND CtrolZt > -2)
+    	(CtrolZimc >-3 AND CtrolZimc <=-2)   
         THEN "Agudo Moderado"
+    WHEN 
+  		CtrolZp < -2 AND CtrolZimc > -2 AND CtrolZt > -2 
+        THEN "Ver curva"
     WHEN (CtrolZimc >-2  OR NotEvo = 2 )  AND CtrolZt <= -2 
         THEN "Crónico"
 	WHEN  NotMotivo = 2 

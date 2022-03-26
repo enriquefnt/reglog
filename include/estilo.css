@@ -29,6 +29,13 @@ header {
   border: 1px solid #fff;
  }
 
+caption {
+  color: white;
+  font-family: arial;
+  background-color: #3cbc8d; 
+  padding: 10px; 
+  border: 2px solid #fff;
+}
 
 
 h2 {
@@ -57,6 +64,7 @@ width: 100%;
 
 table, th, td {
   border: 1px solid #ddd;
+
 }
 
 
@@ -67,11 +75,13 @@ th {
   color: white;
   height: 50px;
   text-align: center;
+
 }
 
 
 td {
-  height: 15px;
+  height: 10px;
+
 }
 
 
@@ -79,6 +89,11 @@ th, td {
   padding: 1px;
   
 }
+
+
+.tr {
+  background-color: lightgray;
+} 
 
 
 tr:nth-child(odd) {
@@ -90,6 +105,9 @@ tr:nth-child(even) {
   background-color: #ccc;
 }
 
+.trclear {
+  background-color: lightgray;
+} 
 
 .error-msg {
  color:#FF0000;
@@ -177,11 +195,11 @@ tr:nth-child(even) {
 
 /* Buttons' focus effect */
 .login input[type="submit"]:focus {
-  border-color: #3cbc8d;
+  border-color: #89bfa8;
 }
 
 .button {
-  background-color: #89bfa8;
+  background-color: #4CAF50;
   border: 1px;
   color: white;
   padding: 5px 5px;
@@ -189,11 +207,28 @@ tr:nth-child(even) {
   text-decoration: none;
   display: inline-block;
   font-size: auto;
-  margin: 4px 2px;
+  margin: 2px 1px;
   transition-duration: 0.4s;
   cursor: pointer;
   border-radius: 5px;
 }
+
+.button1 {
+  background-color: #4CAF50;
+  border: 1px;
+  color: white;
+  padding: 1px 1px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: auto;
+  margin: 1px ;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+
 
 #managerTable {
     max-height: 500px;

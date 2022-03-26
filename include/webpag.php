@@ -5,6 +5,13 @@
 	<title>Listados</title>
 	<link rel="stylesheet" type="text/css" href="estilo.css">
 	<link rel="shortcut icon" type="image/x-icon" href="public/favicon.ico">
+	<!-- Panelbear Analytics - We respect your privacy -->
+<script async src="https://cdn.panelbear.com/analytics.js?site=8Fbp7QAILht"></script>
+<script>
+    window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
+    panelbear('config', { site: '8Fbp7QAILht' });
+</script>
+
 </head>
 <body>
 	<header >
@@ -23,6 +30,10 @@
 		
 			<div class="button">
 				<a href="paraMCDA.php"class=button>Lista para MCDA</a>
+			</div>
+
+			<div class="button">
+				<a href="vigilantes.php"class=button>Actividad Vigilantes</a>
 			</div>
 		
 			<div class="button">
