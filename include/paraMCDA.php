@@ -24,7 +24,16 @@ include __DIR__ . '/../include/conecta.php';
 			try {
 						
 			$sql='
-			Select  DATE_FORMAT(NotFecha , "%d/%m/%Y") AS Fecha, ApeNom As Nombre,ROUND(DATEDIFF(NotFecha,FechaNto)/30.44) AS meses, FechaNto, SUBSTRING(Sexo,1,1) AS Sex, Ao_Nom AS AOP, NotPeso AS Peso,  NotTalla AS Talla, ROUND(NotZpe,2) AS ZPesoEdad ,ROUND(NotZta,2)  AS ZTallaEdad ,
+			Select  DATE_FORMAT(NotFecha , "%d/%m/%Y") AS Fecha, ApeNom As Nombre,
+
+
+      IF (NotFecha <> "31/12/25",floor(DATEDIFF(NotFecha, FechaNto)/365.25),floor(DATEDIFF(CURDATE(), FechaNto)/365.25))  AS años,
+IF (NotFecha <> "31/12/25",floor((DATEDIFF(NotFecha, FechaNto)%365.25)/30.4375),floor((DATEDIFF(CURDATE(), FechaNto)%365.25)/30.4375))  AS meses,
+IF (NotFecha <> "31/12/25",floor(datediff(NotFecha, FechaNto) % 30.4375),floor(datediff(CURDATE(),FechaNto) % 30.4375))  AS dias
+
+
+
+      , FechaNto, SUBSTRING(Sexo,1,1) AS Sex, Ao_Nom AS AOP, NotPeso AS Peso,  NotTalla AS Talla, ROUND(NotZpe,2) AS ZPesoEdad ,ROUND(NotZta,2)  AS ZTallaEdad ,
  ROUND(NotZimc,2) AS ZIMCEdad , MotNom, SevoNom, SclinNom,  if(NotFin="SI","Alta","Activo") AS Estado, 
  if(NotMatricula="SIN DATO","NO","SI") AS Medico, NotFecha AS Ordena,
     CASE
@@ -91,7 +100,7 @@ order by  ordena desc ;';
   <tr>
   	<th>Fecha</th>
     <th>Nombre</th>
-    <th>Edad (meses)</th>
+    <th>Edad</th>
     <th>Area</th>
     <th>Motivo de notificación</th>
     <th>Peso</th>
@@ -118,7 +127,7 @@ order by  ordena desc ;';
   <tr>
     <td><?= htmlspecialchars($caso['Fecha'], ENT_QUOTES, 'UTF-8'); ?></td>
     <td ><?=  htmlspecialchars($caso['Nombre'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td align="center"><?=  htmlspecialchars($caso['meses'], ENT_QUOTES, 'UTF-8'); ?></td>
+    <td><?= htmlspecialchars($caso['años'] .'A ' . $caso['meses'] .'M ' . $caso['dias'] .'D ', ENT_QUOTES, 'UTF-8'); ?></td>
     <td><?= htmlspecialchars($caso['AOP'], ENT_QUOTES, 'UTF-8'); ?></td>
     
     <td><?= htmlspecialchars($caso['MotNom'], ENT_QUOTES, 'UTF-8'); ?></td>

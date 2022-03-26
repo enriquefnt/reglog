@@ -29,7 +29,7 @@ include __DIR__ . '/../include/conecta.php';
   <tr>
   	<th>Fecha</th>
     <th>Nombre</th>
-    <th>Edad (meses)</th>
+    <th>Edad</th>
     <th>Area</th>
     <th>Tipo</th>
     <th>Motivo de notificación</th>
@@ -55,33 +55,27 @@ include __DIR__ . '/../include/conecta.php';
 			<ul>
 	<?php foreach ($casos as $caso): ?>
   <tr>
-    <td><?= htmlspecialchars($caso['Fecha'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td>
-    	
-		<form target="_blank"  action="controles_caso.php" 	method="post">
-			<input type="hidden" name="IdNiño" value="<?= htmlspecialchars($caso['IdNiño'], 
-			  ENT_QUOTES, 'UTF-8'); ?>">
-			<input type="submit" class="button" value="<?= htmlspecialchars($caso['Nombre'], ENT_QUOTES, 'UTF-8'); ?>">
-		</form>	
-
-
-
-
-
-
-    </td>
-    <td align="center"><?=  htmlspecialchars($caso['meses'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td><?= htmlspecialchars($caso['AOP'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td><?= htmlspecialchars($caso['Tipo'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td><?= htmlspecialchars($caso['MotNom'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td align="center"><?= htmlspecialchars($caso['ZPesoEdad'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td align="center"><?= htmlspecialchars($caso['ZTallaEdad'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td align="center"><?= htmlspecialchars($caso['ZIMCEdad'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td><?= htmlspecialchars($caso['Clacificación'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td align="center"><?= htmlspecialchars($caso['Medico'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td><?= htmlspecialchars($caso['Estado'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td><?= htmlspecialchars($caso['vigilante'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td align="center"><?= htmlspecialchars($caso['retraso'], ENT_QUOTES, 'UTF-8'); ?></td>
+      <td><?= htmlspecialchars($caso['Fecha'], ENT_QUOTES, 'UTF-8'); ?></td>
+      <td>
+      	
+  		<form target="_blank"  action="controles_caso.php" 	method="post">
+  			<input type="hidden" name="IdNiño" value="<?= htmlspecialchars($caso['IdNiño'], 
+  			  ENT_QUOTES, 'UTF-8'); ?>">
+  			<input type="submit" class="button" value="<?= htmlspecialchars($caso['Nombre'], ENT_QUOTES, 'UTF-8'); ?>">
+  		</form>	
+      </td>
+     <td><?= htmlspecialchars($caso['años'] .'A ' . $caso['meses'] .'M ' . $caso['dias'] .'D ', ENT_QUOTES, 'UTF-8'); ?></td>
+      <td><?= htmlspecialchars($caso['AOP'], ENT_QUOTES, 'UTF-8'); ?></td>
+      <td><?= htmlspecialchars($caso['Tipo'], ENT_QUOTES, 'UTF-8'); ?></td>
+      <td><?= htmlspecialchars($caso['MotNom'], ENT_QUOTES, 'UTF-8'); ?></td>
+      <td align="center"><?= htmlspecialchars($caso['ZPesoEdad'], ENT_QUOTES, 'UTF-8'); ?></td>
+      <td align="center"><?= htmlspecialchars($caso['ZTallaEdad'], ENT_QUOTES, 'UTF-8'); ?></td>
+      <td align="center"><?= htmlspecialchars($caso['ZIMCEdad'], ENT_QUOTES, 'UTF-8'); ?></td>
+      <td><?= htmlspecialchars($caso['Clacificación'], ENT_QUOTES, 'UTF-8'); ?></td>
+      <td align="center"><?= htmlspecialchars($caso['Medico'], ENT_QUOTES, 'UTF-8'); ?></td>
+      <td><?= htmlspecialchars($caso['Estado'], ENT_QUOTES, 'UTF-8'); ?></td>
+      <td><?= htmlspecialchars($caso['vigilante'], ENT_QUOTES, 'UTF-8'); ?></td>
+      <td align="center"><?= htmlspecialchars($caso['retraso'], ENT_QUOTES, 'UTF-8'); ?></td>
   </tr>
   <?php endforeach; ?>
   </tbody>

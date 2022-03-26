@@ -15,7 +15,7 @@
 	<thead>
   <tr>
   	<th>Fecha</th> 
-    <th>Edad (meses)</th> 
+    <th>Edad</th> 
      <th>Peso</th> 
       <th>Talla</th> 
     <th>Z Peso/edad</th>
@@ -40,7 +40,7 @@
   <tr>
     <td align="center"><?= htmlspecialchars($control['Fecha'], ENT_QUOTES, 'UTF-8'); ?></td>
     
-    <td align="center"><?= htmlspecialchars($control['meses'], ENT_QUOTES, 'UTF-8'); ?></td>
+    <td><?= htmlspecialchars($control['años'] .'A ' . $control['meses'] .'M ' . $control['dias'] .'D ', ENT_QUOTES, 'UTF-8'); ?></td>
        <td align="center"><?= htmlspecialchars($control['Peso'], ENT_QUOTES, 'UTF-8'); ?></td>
        <td align="center"><?= htmlspecialchars($control['Talla'], ENT_QUOTES, 'UTF-8'); ?></td>
     <td align="center"><?= htmlspecialchars($control['ZPesoEdad'], ENT_QUOTES, 'UTF-8'); ?></td>
