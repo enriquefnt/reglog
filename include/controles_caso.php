@@ -124,5 +124,5 @@ where IdNiño='.$_POST['IdNiño'].'
 
 
 	<?php  
-include __DIR__ . '/controles_caso.html.php';
+include __DIR__ . '/../templates/controles_caso.html.php';
 ?>

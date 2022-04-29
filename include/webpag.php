@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<title>Listados</title>
-	<link rel="stylesheet" type="text/css" href="estilo.css">
-	<link rel="shortcut icon" type="image/x-icon" href="public/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="../estilos/estilo.css">
+<link rel="shortcut icon" type="image/x-icon" href="../public/favicon.ico">
 	<!-- Panelbear Analytics - We respect your privacy -->
 <script async src="https://cdn.panelbear.com/analytics.js?site=8Fbp7QAILht"></script>
 <script>

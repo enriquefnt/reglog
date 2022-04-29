@@ -29,7 +29,7 @@ include __DIR__ . '/../include/conecta.php';
 		
 	<?php  
 
-include __DIR__ . '/../include/vigilantes.html.php';
+include __DIR__ . '/../templates/vigilantes.html.php';
 
 	?>
 	

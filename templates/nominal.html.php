@@ -3,8 +3,8 @@
 <html>
 <head>
 	<title>Listados Nominales</title>
-<link rel="stylesheet" type="text/css" href="estilo.css">
-<link rel="shortcut icon" type="image/x-icon" href="public/favicon.ico">
+<link rel="stylesheet" type="text/css" href="../estilos/estilo.css">
+<link rel="shortcut icon" type="image/x-icon" href="../public/favicon.ico">
 <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>

@@ -46,8 +46,8 @@
 <html>
 <head>
 	<title>Login</title>
-	<link rel="stylesheet" type="text/css" href="/reglog/include/estilo.css">
-	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="../estilos/estilo.css">
+<link rel="shortcut icon" type="image/x-icon" href="../public/favicon.ico">
 </head>
 <header class="login-header">
 Ingreso a listados

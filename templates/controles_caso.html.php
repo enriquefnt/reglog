@@ -3,7 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<title>Caso</title>
-	<link rel="stylesheet" type="text/css" href="estilo.css">
+	<link rel="stylesheet" type="text/css" href="../estilos/estilo.css">
+<link rel="shortcut icon" type="image/x-icon" href="../public/favicon.ico">
 </head>
 <body>
 	

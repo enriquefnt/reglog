@@ -26,13 +26,6 @@ IF (NotFecha <> "31/12/25",floor((DATEDIFF(NotFecha, FechaNto)%365.25)/30.4375),
 IF (NotFecha <> "31/12/25",floor(datediff(NotFecha, FechaNto) % 30.4375),floor(datediff(CURDATE(),FechaNto) % 30.4375))  AS dias,
 
 
-
-
-
-
-
-
-
     CASE
     WHEN  
     (NotZpe > 7 OR NotZimc > 7 OR NotZta > 7 OR 
@@ -172,7 +165,7 @@ AS color
 		?>
 	<?php  
 
-include __DIR__ . '/../include/nominal.html.php';
+include __DIR__ . '/../templates/nominal.html.php';
 
 	?>
 	
