@@ -18,7 +18,7 @@ IF (NotFecha <> "31/12/25",floor(DATEDIFF(NotFecha, FechaNto)/365.25),floor(DATE
 IF (NotFecha <> "31/12/25",floor((DATEDIFF(NotFecha, FechaNto)%365.25)/30.4375),floor((DATEDIFF(CURDATE(), FechaNto)%365.25)/30.4375))  AS meses,
 IF (NotFecha <> "31/12/25",floor(datediff(NotFecha, FechaNto) % 30.4375),floor(datediff(CURDATE(),FechaNto) % 30.4375))  AS dias
 
-	, Ao_Nom AS AOP, ROUND(NotPeso,2) AS Peso, 
+	, Ao_Nom AS AOP, ResiDire as Domicilio, ROUND(NotPeso,2) AS Peso, 
     NotTalla AS Talla, ROUND(NotZpe,2) AS ZPesoEdad ,ROUND(NotZta,2)  AS ZTallaEdad ,
  	ROUND(NotZimc,2) AS ZIMCEdad , MotNom, SevoNom, SclinNom,@tabla:="Notificación" AS Tipo, 
     if(NotFin="SI","Alta","Activo") AS Estado, NotFecha AS Ordena, 
@@ -69,6 +69,7 @@ left join SEGUNEVOLUCION on NotEvo = SevoId
 left join SEGUNCLINICA on NotClinica = SclinId
 left join MOTIVOSNOTI on NotMotivo = MotId
 left join AREAS on Aoresi=Ao_Id
+left join NIÑORESIDENCIA on IdNiño =ResiNiño
 left join NOTICONTROL on NotId=IdNoti
 inner join USUARIOS on NotUsuario = Idusuario
 where Aoresi= '.$_POST['listaAOPS'].' AND NotFin="NO" AND IdCtrol IS null
@@ -84,7 +85,7 @@ IF (t.CtrolFecha <> "31/12/25",floor(datediff(t.CtrolFecha, FechaNto) % 30.4375)
 
 
 
-	, Ao_Nom AS AOP, ROUND(t.CtrolPeso,2) AS Peso,
+	, Ao_Nom AS AOP, ResiDire as Domicilio, ROUND(t.CtrolPeso,2) AS Peso,
 	CtrolTalla AS Talla, ROUND(t.CtrolZp,2) AS ZPesoEdad ,ROUND(t.CtrolZt,2)  AS ZTallaEdad , 
     ROUND(t.CtrolZimc,2) AS ZIMCEdad , MotNom, SevoNom, SclinNom,
 	@tabla:="Control" AS Tipo,if(NotFin="SI","Alta","Activo") AS Estado, @ordena:=CtrolFecha,
@@ -140,6 +141,7 @@ AS color
 				inner join SEGUNCLINICA on NotClinica = SclinId
 				inner join MOTIVOSNOTI on NotMotivo = MotId
 				inner join AREAS on Aoresi=Ao_Id
+				inner join NIÑORESIDENCIA on IdNiño =ResiNiño
 				inner join USUARIOS on CtrolUsuario = Idusuario
 								where Aoresi= '.$_POST['listaAOPS'].' AND NotFin="NO" 
                                 GROUP BY Nombre

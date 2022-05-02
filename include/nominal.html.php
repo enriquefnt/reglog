@@ -25,7 +25,7 @@ include __DIR__ . '/../include/conecta.php';
   	<th>Último registro</th>
     <th>Nombre</th>
     <th>Edad</th>
-   
+   <th>Domicilio</th>
     <th>Tipo</th>
     <th>Motivo de notificación</th>
     <th>Z Peso/edad</th>
@@ -65,7 +65,7 @@ include __DIR__ . '/../include/conecta.php';
 
     </td>
    <td><?= htmlspecialchars($caso['años'] .'A ' . $caso['meses'] .'M ' . $caso['dias'] .'D ', ENT_QUOTES, 'UTF-8'); ?></td>
-    
+    <td><?= htmlspecialchars($caso['Domicilio'], ENT_QUOTES, 'UTF-8'); ?></td>
     <td><?= htmlspecialchars($caso['Tipo'], ENT_QUOTES, 'UTF-8'); ?></td>
     <td><?= htmlspecialchars($caso['MotNom'], ENT_QUOTES, 'UTF-8'); ?></td>
     <td align="center"><?= htmlspecialchars($caso['ZPesoEdad'], ENT_QUOTES, 'UTF-8'); ?></td>
