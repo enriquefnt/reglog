@@ -1,12 +1,12 @@
-
+<?php  
+include __DIR__ . '/../include/conecta.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Listados Nominales</title>
 <link rel="stylesheet" type="text/css" href="../estilos/estilo.css">
-<link rel="shortcut icon" type="image/x-icon" href="../public/favicon.ico">
-<script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
-   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<link rel="shortcut icon" type="image/x-icon" href="public/favicon.ico">
 </head>
 
 	<header >
@@ -18,16 +18,14 @@
 	<div>
 			
 				
-			<table id="tbl_exporttable_to_xls">
-				
-        <tbody>
+			<table id="managerTable">
+				<tbody>
 	<thead>
   <tr>
   	<th>Último registro</th>
     <th>Nombre</th>
-   
-    <th>Edad </th>
-   
+    <th>Edad</th>
+   <th>Domicilio</th>
     <th>Tipo</th>
     <th>Motivo de notificación</th>
     <th>Z Peso/edad</th>
@@ -49,23 +47,25 @@
 
 		<?php else: ?>
 		<?echo 'del área operativa de '. $caso['AOP']; ?>	
-			
+			<ul>
 	<?php foreach ($casos as $caso): ?>
   <tr>
     <td><?= htmlspecialchars($caso['Fecha'], ENT_QUOTES, 'UTF-8'); ?></td>
-    <td><?= htmlspecialchars($caso['Nombre'], ENT_QUOTES, 'UTF-8'); ?>
-
-        <form target="_blank"  action="controles_caso.php"   method="post">
-        <input type="hidden" name="IdNiño" value="<?= htmlspecialchars($caso['IdNiño'], 
-          ENT_QUOTES, 'UTF-8'); ?>">
-          
-        <input type="submit" class="button1" value="...">
-        
-        </form> 
-    </td>
-
-    <td ><?= htmlspecialchars($caso['años'] .'A ' . $caso['meses'] .'M ' . $caso['dias'] .'D ', ENT_QUOTES, 'UTF-8'); ?></td>
+    <td>
     
+    	<form target="_blank"  action="controles_caso.php" 
+    	method="post"
+		>
+		<input type="hidden" name="IdNiño" value="<?= htmlspecialchars($caso['IdNiño'], 
+		  ENT_QUOTES, 'UTF-8'); ?>">
+		<input type="submit" class="button" value="<?= htmlspecialchars($caso['Nombre'], ENT_QUOTES, 'UTF-8'); ?>">
+		</form>	
+
+
+
+    </td>
+   <td><?= htmlspecialchars($caso['años'] .'A ' . $caso['meses'] .'M ' . $caso['dias'] .'D ', ENT_QUOTES, 'UTF-8'); ?></td>
+    <td><?= htmlspecialchars($caso['Domicilio'], ENT_QUOTES, 'UTF-8'); ?></td>
     <td><?= htmlspecialchars($caso['Tipo'], ENT_QUOTES, 'UTF-8'); ?></td>
     <td><?= htmlspecialchars($caso['MotNom'], ENT_QUOTES, 'UTF-8'); ?></td>
     <td align="center"><?= htmlspecialchars($caso['ZPesoEdad'], ENT_QUOTES, 'UTF-8'); ?></td>
@@ -81,18 +81,14 @@
    </tr>
   <?php endforeach; ?>
   <h2><?='Area Operativa: '. $caso['AOP'].  ' al día ' . date("d-m-Y "); ?></h2>
-  <button class="button" onclick="ExportToExcel('xlsx')">
-   <i class="fas fa-download"></i>
-   Descargar xlsx
-</button>
-
+  
   <?php endif; ?>
   </tbody>
 </table>
 			
 	
 </div>
-<script type="text/javascript" src="descarga.js"></script> 
+
 </body>
 </html>
 
