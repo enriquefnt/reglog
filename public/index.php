@@ -1,5 +1,8 @@
 <?php
 	include __DIR__ . '/../include/conecta.php';
+
+	session_start();
+
 	if(isset($_POST['login'])) {
 		$errMsg = '';
 
@@ -14,7 +17,10 @@
 
 		if($errMsg == '') {
 			try {
-				$stmt = $connect->prepare('SELECT Idusuario, Ape , NomUsuario,Contraseña FROM USUARIOS WHERE NomUsuario = :NomUsuario');
+				$stmt = $connect->prepare('SELECT Idusuario, Ape , NomUsuario,Contraseña, concat(Nom, " ",Ape) AS Usuario, IdAo, if (IdAo < 1,"Auditor",Ao_Nom) AS nomAOP, Auditor FROM USUARIOS 
+
+					left join AREAS on IdAo= Ao_Id 
+					WHERE NomUsuario = :NomUsuario');
 				$stmt->execute(array(
 					':NomUsuario' => $NomUsuario
 					));
@@ -25,11 +31,16 @@
 				}
 				else {
 					if($Contraseña == $data['Contraseña']) {
-						$_SESSION['name'] = $data['Ape'];
+						$_SESSION['name'] = $data['Usuario'];
 						$_SESSION['username'] = $data['NomUsuario'];
 						$_SESSION['password'] = $data['Contraseña'];
+						$_SESSION['tipo'] = $data['Auditor'];
+						$_SESSION['nomAOPe'] = $data['nomAOP'];
+						$_SESSION['AOPe'] = $data['IdAo'];
+
 						
-						header('Location: /reglog/include/webpag.php');
+						
+						header('Location: /reglog/templates/layout.html.php');
 						exit;
 					}
 					else
@@ -46,11 +57,11 @@
 <html>
 <head>
 	<title>Login</title>
-	<link rel="stylesheet" type="text/css" href="../estilos/estilo.css">
+	<link rel="stylesheet" type="text/css" href="../estilos/estilo_login.css">
 <link rel="shortcut icon" type="image/x-icon" href="../public/favicon.ico">
 </head>
 <header class="login-header">
-Ingreso a listados
+Ingreso a listados - SiViNSalta
 </header>
 
 <body>
