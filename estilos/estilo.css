@@ -24,7 +24,7 @@ li {
 header {
   display: block; 
   position: sticky;
-  background-color: #1cbc8d; 
+  background-color: #6B9080; 
   padding: 3px; 
   border: 1px solid #fff;
  }
@@ -32,7 +32,7 @@ header {
 caption {
   color: white;
   font-family: arial;
-  background-color: #3cbc8d; 
+  background-color: #6B9080; 
   padding: 10px; 
   border: 2px solid #fff;
 }
@@ -52,7 +52,7 @@ p {
 
 div {
    display: block; 
-  background-color: #3cbc8d; 
+  background-color: #6B9080; 
   padding: 7px; 
   border: 2px solid #ccc;
 } 
@@ -71,7 +71,7 @@ table, th, td {
 th {
   position: sticky;
   top: 0;
-  background-color: #3cbc8d;
+  background-color: #6B9080;
   color: white;
   height: 50px;
   text-align: center;

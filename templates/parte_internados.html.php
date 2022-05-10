@@ -1,13 +1,7 @@
-<?php 
-if (is_null($_SESSION['nombre'])) {
-session_start();
-}
-?>
-
 <?php
-if ($_SESSION['tipo']== "SI"){
-
+session_start();
 ?>
+
 
 <form action="" method="post">
 
@@ -17,6 +11,9 @@ if ($_SESSION['tipo']== "SI"){
  
    <select name="AOP" required="required" id="AOPe">
 <option value=0>Seleccione AOP</option>
+
+ 
+
 <?php
 $aop = [];
   foreach ($result as $aop) {
@@ -24,6 +21,8 @@ $aop = [];
   }
 ?>
 </select>
+<label for="Fecha">Fecha:</label><br>
+  <input type="date" id="Fcha" name="Fecha" min="2015-01-01" max="<?=date('Y-m-d');?>" value=""><br><br>
   
   <input type="submit"  value="Seleccionar">
 
@@ -32,59 +31,74 @@ $aop = [];
 
 
 
-<?php  } ?>
+
 <div class="w3-responsive">
   <table class="w3-table-all w3-tiny">
 <?php 
 
 if (isset($_POST['AOP'])||isset($_SESSION['tipo'])) { ?>
 
-			<thead>
-			<tr class="w3-grey">
-				<th>Nombre</th>
-				<th>Ingreso</th>
-				<th>Egreso</th>
-				<th>Estado</th>
-			</tr>
-		</thead>
+      <thead>
+      <tr class="w3-grey">
+        <th>Nombre</th>
+        <th>Ingreso</th>
+        <th>Egreso</th>
+        <th>Estado</th>
+        
+      </tr>
+    </thead>
 
-	<?php } ?>
+  <?php } ?>
 
 
 
 <?php 
 
-if (isset($_POST['AOP'] )&& $_SESSION['tipo']==1) {
-	$aop= $_POST['AOP'];
+if (isset($_POST['AOP'] )&& $_SESSION['tipo']=="SI") {
+  $aop= $_POST['AOP'];
 }
 
-else {$aop=$_SESSION['AOP'];}
+else {$aop=$_SESSION['AOPe'];}
 
-foreach ($casos as $caso): ?>
-   <?php if  ($caso['idaop']==$aop) {?>
+foreach ($internados as $internado): ?>
+   <?php if  ($caso['IntAo']==$aop) {?>
 
-	<tbody>
-		<tr class="w3-hover-pale-green">
-	   		<td><?= htmlspecialchars($internados['ApeNom'], ENT_QUOTES, 'UTF-8'); ?></td>
-		    <td><?= htmlspecialchars($internados['FechaCtrl'], ENT_QUOTES, 'UTF-8'); ?></td>
-			<td><?= htmlspecialchars($internados['Talla'], ENT_QUOTES, 'UTF-8').' ('.$caso['ClaTa'].')'; ?></td>
-			<td><?= htmlspecialchars($internados['ZPE'], ENT_QUOTES, 'UTF-8'); ?></td>
-		
-		 
-    <?php } ;  ?>
+  <tbody>
+    <tr class="w3-hover-pale-green">
+        
+      
+      <td><?= htmlspecialchars($internado['ApeNom'], ENT_QUOTES, 'UTF-8'); ?></td>
+      <td><?= htmlspecialchars($internado['Ingreso'], ENT_QUOTES, 'UTF-8'); ?></td>
+      <td><?= htmlspecialchars($internado['Alta'], ENT_QUOTES, 'UTF-8'); ?></td>
+      <td><?= htmlspecialchars($internado['Estado'], ENT_QUOTES, 'UTF-8'); ?></td>
+
+
+      
     
+      
+ 
+          
+        <?php $areaOP =$caso['Ao_Nom'] ; ?>
+
+      </tr>
+      <?php } ?>
+  <?php endforeach; ?>
 
 <?php 
 
 if (isset($_POST['AOP']) || isset($_SESSION['AOP'])) { ?>
-	<h4><?='Area Operativa: '. $areaOP .  ' al día ' . date("d-m-Y "); ?></h4>
+  <h4><?='Area Operativa: '. $areaOP .  ' al día ' . date("d-m-Y "); ?></h4>
 
 <?php } ?>
 
-	
-		</tbody>
-	</table>
+  
+    </tbody>
+  </table>
 </div>
+
+
+
+
 
 
 

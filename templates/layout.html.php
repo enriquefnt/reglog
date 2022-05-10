@@ -1,5 +1,4 @@
-
-<?php 
+<?php
 session_start();
 ?>
 
@@ -25,7 +24,7 @@ session_start();
 <body class="w3-light-grey">
 <header class="w3-row-padding header w3-blue-grey">
 <h1>Listados de registros de SiViNSalta</h1>
-<h3>Listas</h3>
+
 	<p>
 		<?php if ($_SESSION['tipo'] == "NO"){ 
 		echo  'Usuario:' ;
@@ -52,7 +51,7 @@ session_start();
 	<div class="w3-bar w3-border w3-light-grey">
 
 
-	  	<a href="../includes/inicio.php" class="w3-bar-item w3-button">Inicio</a>
+	  	<a href="../include/parte_internados.php" class="w3-bar-item w3-button">Internados</a>
 			
 
 			

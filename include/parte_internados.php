@@ -1,27 +1,24 @@
 <?php
 include __DIR__ . '/conecta.php';
 include __DIR__ . '/funciones.php';
-session_start();
+//session_start();
 
 
    try {
+      if (isset($_POST['AOP'])){
 
+      $sql='call MSP_NUTRICION.Parte_internados('.$_POST['Fecha'].','.$_POST['AOP'].');';
+
+      $internados = $connect->query($sql);
+
+
+}
 $result = findAll($connect, 'AREAS','Ao_Nom');
-
-
-$sql='call MSP_NUTRICION.Parte_internados("2022-05-07", 8);';
-
-$internados = $connect->query($sql);
 
 $title = 'Internación';
 
 ob_start();
-
-
 include __DIR__ . '/../templates/parte_internados.html.php';
-
-//include __DIR__ . '/../templates/seleAOP.html.php';//}
-
 $output = ob_get_clean() ;
 
 }
